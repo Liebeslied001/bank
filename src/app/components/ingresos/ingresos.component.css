@@ -1,0 +1,45 @@
+.item {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 110px;
+  padding: 20px 10px;
+  font-family: sans-serif;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: gray;
+  color: #fff;
+  display: grid;
+  place-content: center;
+  margin-right: 10px;
+}
+
+.icon i {
+  font-size: 1.2rem;
+}
+
+.text p:first-child {
+  color: #333a;
+  font-weight: 600;
+}
+
+.text p:last-child {
+  color: #333;
+  font-weight: 600;
+}
+
+.total p {
+  color: #ef4e4e;
+  font-size: 1.6rem;
+  font-weight: bold;
+}

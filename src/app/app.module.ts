@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CuentasComponent } from './components/cuentas/cuentas.component';
+import { IngresosComponent } from './components/ingresos/ingresos.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CuentasComponent } from './components/cuentas/cuentas.component';
     SideBarComponent,
     ButtonComponent,
     CuentasComponent,
+    IngresosComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

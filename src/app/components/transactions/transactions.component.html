@@ -4,6 +4,65 @@
     <div><i class="fa-solid fa-filter"></i></div>
   </div>
   <div class="gastos">
-    <app-cuentas></app-cuentas>
+    <app-cuentas
+      [indice]="'07'"
+      [fecha1]="'Monday'"
+      [fecha2]="'March, 2022'"
+      [cantidad]="'-$ 530'"
+    ></app-cuentas>
+    <app-ingresos
+      [colorCant]="colorNegativo"
+      [cantidad]="'-$ 500'"
+      [name]="'Rent'"
+      [icon]="'fa-solid fa-building-columns'"
+      [color]="'#808080'"
+    ></app-ingresos>
+    <app-ingresos
+      [colorCant]="colorPostivo"
+      [cantidad]="'+$ 2000'"
+      [name]="'Salary'"
+      [icon]="'fa-solid fa-building-columns'"
+      [color]="'#43C6B8'"
+    ></app-ingresos>
+    <app-ingresos
+      [colorCant]="colorNegativo"
+      [cantidad]="'-$ 10'"
+      [name]="'Transport'"
+      [icon]="'fa-solid fa-car'"
+      [color]="'#F97315'"
+    ></app-ingresos>
+    <app-cuentas
+      [indice]="'06'"
+      [fecha1]="'Sunday'"
+      [fecha2]="'March, 2022'"
+      [cantidad]="'-$ 320'"
+    ></app-cuentas>
+    <app-ingresos
+      [colorCant]="colorNegativo"
+      [cantidad]="'-$ 250'"
+      [name]="'Education'"
+      [icon]="'fa-solid fa-chalkboard'"
+      [color]="'#0EA5E9'"
+    ></app-ingresos>
+    <app-ingresos
+      [colorCant]="colorNegativo"
+      [cantidad]="'-$ 20'"
+      [name]="'Groceries'"
+      [icon]="'fa-solid fa-cart-shopping'"
+      [color]="'#0CB7D5'"
+    ></app-ingresos>
+    <app-ingresos
+      [colorCant]="colorNegativo"
+      [cantidad]="'-$ 50'"
+      [name]="'Gifts'"
+      [icon]="'fa-solid fa-gift'"
+      [color]="'#8B5CF6'"
+    ></app-ingresos>
+    <app-cuentas
+      [indice]="'05'"
+      [fecha1]="'Saturday'"
+      [fecha2]="'March, 2022'"
+      [cantidad]="'-$ 90'"
+    ></app-cuentas>
   </div>
 </div>

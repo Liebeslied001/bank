@@ -1,3 +1,7 @@
+h2 {
+  font-family: sans-serif;
+}
+
 .transaction {
   height: 100vh;
   display: flex;
@@ -8,9 +12,17 @@
 }
 
 .titulo {
+  width: 100%;
   display: flex;
-  gap: 150px;
+  justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
   background-color: #fafafa;
+  margin-bottom: 20px;
+}
+
+.gastos {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
