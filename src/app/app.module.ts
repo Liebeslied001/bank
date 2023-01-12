@@ -10,18 +10,12 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CuentasComponent } from './components/cuentas/cuentas.component';
 import { IngresosComponent } from './components/ingresos/ingresos.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { MainPageModule } from './components/main-page/main-page.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TransactionsComponent,
-    CreateNewCategoryComponent,
-    SideBarComponent,
-    ButtonComponent,
-    CuentasComponent,
-    IngresosComponent,
-  ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, MainPageModule],
   providers: [],
   bootstrap: [AppComponent],
 })

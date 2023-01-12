@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Category, Transaction } from 'src/app/models/transaction.model';
 
 @Component({
   selector: 'app-create-new-category',
@@ -6,8 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-new-category.component.css'],
 })
 export class CreateNewCategoryComponent {
+  @Input() transactions: Transaction[] = [];
+  @Input() categories: Category[] = [];
   color: string = '#0CB7D5';
   money: number = 0;
-  textSalario: string = '';
+  nombre: string = '';
   icon: string = '';
 }

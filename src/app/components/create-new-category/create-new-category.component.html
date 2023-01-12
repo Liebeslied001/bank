@@ -30,42 +30,15 @@
   </div>
 
   <div class="button-cont">
-    <app-button
-      [icon]="'fa-solid fa-building-columns'"
-      [textSalario]="'Rent'"
-      [money]="500"
-      [color]="'#808080'"
-    ></app-button>
-    <app-button
-      [icon]="'fa-solid fa-cart-shopping'"
-      [textSalario]="'Groceries'"
-      [money]="100"
-      [color]="color"
-    ></app-button>
-    <app-button
-      [icon]="'fa-solid fa-car'"
-      [textSalario]="'Transport'"
-      [money]="150"
-      [color]="'#F97315'"
-    ></app-button>
-    <app-button
-      [icon]="'fa-solid fa-laptop-medical'"
-      [textSalario]="'Health'"
-      [money]="200"
-      [color]="'#F43F5E'"
-    ></app-button>
-    <app-button
-      [icon]="'fa-solid fa-gift'"
-      [textSalario]="'Gifts'"
-      [money]="50"
-      [color]="'#8B5CF6'"
-    ></app-button>
-    <app-button
-      [icon]="'fa-solid fa-chalkboard'"
-      [textSalario]="'Education'"
-      [money]="250"
-      [color]="'#0EA5E9'"
-    ></app-button>
+    <div *ngFor="let transaction of transactions">
+      <app-button
+        [icon]="'fa-solid fa-building-columns'"
+        [textSalario]="'Rent'"
+        [amount]="transaction.amount"
+        [color]="'#808080'"
+        [categories]="categories"
+      ></app-button>
+    </div>
     <div class="add-button">
       <i class="fa-solid fa-plus"></i>
     </div>
