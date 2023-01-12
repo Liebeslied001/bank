@@ -54,4 +54,8 @@ export class MainPageComponent {
       icon: 'fa-solid fa-chalkboard',
     },
   ];
+  isOpenM: boolean = false;
+  agregarCategpria(cat: Category) {
+    this.categories.push(cat);
+  }
 }

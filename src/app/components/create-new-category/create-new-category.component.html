@@ -32,14 +32,12 @@
   <div class="button-cont">
     <div *ngFor="let transaction of transactions">
       <app-button
-        [icon]="'fa-solid fa-building-columns'"
-        [textSalario]="'Rent'"
+        [category_id]="transaction.category_id"
         [amount]="transaction.amount"
-        [color]="'#808080'"
         [categories]="categories"
       ></app-button>
     </div>
-    <div class="add-button">
+    <div class="add-button" (click)="openModal()">
       <i class="fa-solid fa-plus"></i>
     </div>
   </div>

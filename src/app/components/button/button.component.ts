@@ -7,19 +7,18 @@ import { Category } from 'src/app/models/transaction.model';
   styleUrls: ['./button.component.css'],
 })
 export class ButtonComponent {
-  @Input() color!: string;
+  @Input() category_id!: string;
   @Input() amount!: number;
-  @Input() textSalario!: string;
-  @Input() icon!: string;
   @Input() categories: Category[] = [];
-  cateria: Category = {
-    id: '',
-    color: '',
-    icon: '',
-    name: '',
-  };
-  constructor() {
-    this.cargarCategoria();
+  color!: string;
+  textSalario!: string;
+  icon!: string;
+  ngOnInit() {
+    const miCategoria = this.categories.find(
+      (cat) => cat.id == this.category_id
+    );
+    this.color = miCategoria?.color || '';
+    this.textSalario = miCategoria?.name || '';
+    this.icon = miCategoria?.icon || '';
   }
-  cargarCategoria() {}
 }

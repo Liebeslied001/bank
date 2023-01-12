@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Category, Transaction } from 'src/app/models/transaction.model';
 
 @Component({
@@ -9,8 +9,8 @@ import { Category, Transaction } from 'src/app/models/transaction.model';
 export class CreateNewCategoryComponent {
   @Input() transactions: Transaction[] = [];
   @Input() categories: Category[] = [];
-  color: string = '#0CB7D5';
-  money: number = 0;
-  nombre: string = '';
-  icon: string = '';
+  @Output() onOpenModal: EventEmitter<boolean> = new EventEmitter();
+  openModal() {
+    this.onOpenModal.emit(true);
+  }
 }
