@@ -1,4 +1,8 @@
-import { v4 as uuid } from 'uuid';
+
+export interface NewTransac{
+  total:number,
+  arreglo:Transaction[]
+}
 
 export interface Transaction {
   id: string;

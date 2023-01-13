@@ -4,7 +4,27 @@
     <div><i class="fa-solid fa-filter"></i></div>
   </div>
   <div class="gastos">
-    <app-cuentas
+    <div *ngFor="let transac of newTransactions">
+      <app-cuentas
+        [indice]="'07'"
+        [diaStr]="transac.arreglo[0].date.toString()"
+        [diaNumber]="'March, 2022'"
+        [total]="transac.total"
+      ></app-cuentas>
+      <div *ngFor="let arr of transac.arreglo">
+        <app-ingresos
+          [colorCant]="colorNegativo"
+          [cantidad]="arr.amount"
+          [name]="'Rent'"
+          [icon]="'fa-solid fa-building-columns'"
+          [color]="'#808080'"
+          [category_id] = "arr.category_id"
+          [categories] = "categories"
+        ></app-ingresos>
+      </div>
+    </div>
+
+    <!-- <app-cuentas
       [indice]="'07'"
       [fecha1]="'Monday'"
       [fecha2]="'March, 2022'"
@@ -63,6 +83,6 @@
       [fecha1]="'Saturday'"
       [fecha2]="'March, 2022'"
       [cantidad]="'-$ 90'"
-    ></app-cuentas>
+    ></app-cuentas> -->
   </div>
 </div>

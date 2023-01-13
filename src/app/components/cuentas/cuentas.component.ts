@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Category } from 'src/app/models/transaction.model';
 
 @Component({
   selector: 'app-cuentas',
@@ -6,8 +7,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./cuentas.component.css'],
 })
 export class CuentasComponent {
-  @Input() cantidad!: string;
+  @Input() total!: number;
   @Input() indice!: string;
-  @Input() fecha1!: string;
-  @Input() fecha2!: string;
+  @Input() diaStr!: string;
+  @Input() diaNumber!: string;
+  
 }
+

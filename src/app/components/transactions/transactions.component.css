@@ -9,6 +9,7 @@ h2 {
   padding: 20px;
   border: 2px solid grey;
   align-items: center;
+  overflow: scroll;
 }
 
 .titulo {

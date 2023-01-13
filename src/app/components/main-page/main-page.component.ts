@@ -46,81 +46,79 @@ export class MainPageComponent {
       category_id: 'C_EDUCATION',
     },
     /*extra*/
-
-    // {
-    //   id: uuid(),
-    //   date: new Date('2022/01/01'),
-    //   amount: 500,
-    //   category_id: 'C_REMT',
-    // },
-    // {
-    //   id: uuid(),
-    //   date: new Date('2022/01/02'),
-    //   amount: 100,
-    //   category_id: 'C_GROCERIES',
-    // },
-    // {
-    //   id: uuid(),
-    //   date: new Date('2022/01/03'),
-    //   amount: 150,
-    //   category_id: 'C_TRANSPORT',
-    // },
-    // {
-    //   id: uuid(),
-    //   date: new Date('2022/01/04'),
-    //   amount: 200,
-    //   category_id: 'C_HEALTH',
-    // },
-    // {
-    //   id: uuid(),
-    //   date: new Date('2022/01/05'),
-    //   amount: 50,
-    //   category_id: 'C_GIFTS',
-    // },
-    // {
-    //   id: uuid(),
-    //   date: new Date('2022/01/06'),
-    //   amount: 250,
-    //   category_id: 'C_EDUCATION',
-    // },
-    // {
-    //   id: uuid(),
-    //   date: new Date('2022/01/01'),
-    //   amount: 500,
-    //   category_id: 'C_REMT',
-    // },
-    // {
-    //   id: uuid(),
-    //   date: new Date('2022/01/02'),
-    //   amount: 100,
-    //   category_id: 'C_GROCERIES',
-    // },
-    // {
-    //   id: uuid(),
-    //   date: new Date('2022/01/03'),
-    //   amount: 150,
-    //   category_id: 'C_TRANSPORT',
-    // },
-    // {
-    //   id: uuid(),
-    //   date: new Date('2022/01/04'),
-    //   amount: 200,
-    //   category_id: 'C_HEALTH',
-    // },
-    // {
-    //   id: uuid(),
-    //   date: new Date('2022/01/05'),
-    //   amount: 50,
-    //   category_id: 'C_GIFTS',
-    // },
-    // {
-    //   id: uuid(),
-    //   date: new Date('2022/01/06'),
-    //   amount: 250,
-    //   category_id: 'C_EDUCATION',
-    // },
+    {
+      id: uuid(),
+      date: new Date('2022/01/01'),
+      amount: 500,
+      category_id: 'C_REMT',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/02'),
+      amount: 100,
+      category_id: 'C_GROCERIES',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/03'),
+      amount: 150,
+      category_id: 'C_TRANSPORT',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/04'),
+      amount: 200,
+      category_id: 'C_HEALTH',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/05'),
+      amount: 50,
+      category_id: 'C_GIFTS',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/06'),
+      amount: 250,
+      category_id: 'C_EDUCATION',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/01'),
+      amount: 500,
+      category_id: 'C_REMT',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/02'),
+      amount: 100,
+      category_id: 'C_GROCERIES',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/03'),
+      amount: 150,
+      category_id: 'C_TRANSPORT',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/04'),
+      amount: 200,
+      category_id: 'C_HEALTH',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/05'),
+      amount: 50,
+      category_id: 'C_GIFTS',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/06'),
+      amount: 250,
+      category_id: 'C_EDUCATION',
+    },
   ];
-
   categories: Category[] = [
     {
       id: 'C_REMT',

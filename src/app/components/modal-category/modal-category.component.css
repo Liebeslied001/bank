@@ -2,11 +2,6 @@
   --gray-color: #4c5562;
 }
 
-h2 {
-  font-family: sans-serif;
-  font-weight: 600;
-}
-
 .popup {
   align-items: center;
   display: flex;
@@ -30,7 +25,7 @@ h2 {
 .popup-content {
   background-color: white;
   border-radius: 8px;
-  padding: 10px;
+  padding: 15px;
   z-index: 1;
 }
 
@@ -191,23 +186,6 @@ p {
   padding: 5px 0;
   width: 100%;
 }
-
-.modal-container > button {
-  padding: 5px;
-  cursor: pointer;
-  background-color: transparent;
-  border-color: #d92d78;
-  color: #d92d78;
-  font-size: 1.2rem;
-  font-weight: bold;
-  transition: all 0.3s;
-}
-
-.modal-container > button:hover {
-  background-color: #d92d78;
-  color: white;
-}
-
 /*mio*/
 .modal {
   position: fixed;

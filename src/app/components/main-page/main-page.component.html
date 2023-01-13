@@ -5,7 +5,7 @@
     [categories]="categories"
     (onOpenModal)="isOpenM = $event"
   ></app-create-new-category>
-  <app-transactions [transactions]="transactions"></app-transactions>
+  <app-transactions [transactions]="transactions" [categories]="categories"></app-transactions>
 </div>
 <app-modal-category
   [isOpen]="isOpenM"

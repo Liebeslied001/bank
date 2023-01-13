@@ -19,11 +19,11 @@ export class ModalCategoryComponent {
   };
   colors: string[] = [
     '#EF4444',
-    '#06B6D4',
+    '#F97316',
     '#F59E0B',
     '#10B981',
     '#14B8A6',
-    '#F97316',
+    '#06B6D4',
     '#0EA5E9',
     '#3B82F6',
   ];
