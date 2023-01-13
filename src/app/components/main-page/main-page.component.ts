@@ -9,12 +9,115 @@ import { v4 as uuid } from 'uuid';
 })
 export class MainPageComponent {
   transactions: Transaction[] = [
-    { id: uuid(), date: new Date(), amount: 500, category_id: 'C_REMT' },
-    { id: uuid(), date: new Date(), amount: 100, category_id: 'C_GROCERIES' },
-    { id: uuid(), date: new Date(), amount: 150, category_id: 'C_TRANSPORT' },
-    { id: uuid(), date: new Date(), amount: 200, category_id: 'C_HEALTH' },
-    { id: uuid(), date: new Date(), amount: 50, category_id: 'C_GIFTS' },
-    { id: uuid(), date: new Date(), amount: 250, category_id: 'C_EDUCATION' },
+    {
+      id: uuid(),
+      date: new Date('2022/01/01'),
+      amount: 500,
+      category_id: 'C_REMT',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/02'),
+      amount: 100,
+      category_id: 'C_GROCERIES',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/03'),
+      amount: 150,
+      category_id: 'C_TRANSPORT',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/04'),
+      amount: 200,
+      category_id: 'C_HEALTH',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/05'),
+      amount: 50,
+      category_id: 'C_GIFTS',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/06'),
+      amount: 250,
+      category_id: 'C_EDUCATION',
+    },
+    /*extra*/
+    {
+      id: uuid(),
+      date: new Date('2022/01/01'),
+      amount: 500,
+      category_id: 'C_REMT',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/02'),
+      amount: 100,
+      category_id: 'C_GROCERIES',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/03'),
+      amount: 150,
+      category_id: 'C_TRANSPORT',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/04'),
+      amount: 200,
+      category_id: 'C_HEALTH',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/05'),
+      amount: 50,
+      category_id: 'C_GIFTS',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/06'),
+      amount: 250,
+      category_id: 'C_EDUCATION',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/01'),
+      amount: 500,
+      category_id: 'C_REMT',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/02'),
+      amount: 100,
+      category_id: 'C_GROCERIES',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/03'),
+      amount: 150,
+      category_id: 'C_TRANSPORT',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/04'),
+      amount: 200,
+      category_id: 'C_HEALTH',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/05'),
+      amount: 50,
+      category_id: 'C_GIFTS',
+    },
+    {
+      id: uuid(),
+      date: new Date('2022/01/06'),
+      amount: 250,
+      category_id: 'C_EDUCATION',
+    },
   ];
   categories: Category[] = [
     {
@@ -39,7 +142,7 @@ export class MainPageComponent {
       id: 'C_HEALTH',
       name: 'Health',
       color: '#F43F5E',
-      icon: 'fa-solid fa-laptop-medical',
+      icon: 'fa-solid fa-heart',
     },
     {
       id: 'C_GIFTS',
@@ -51,11 +154,24 @@ export class MainPageComponent {
       id: 'C_EDUCATION',
       name: 'Education',
       color: '#0EA5E9',
-      icon: 'fa-solid fa-chalkboard',
+      icon: 'fa-solid fa-graduation-cap',
+    },
+    {
+      id: 'C_GAMEPAD',
+      name: 'Gamepad',
+      color: '#10B981',
+      icon: 'fa-solid fa-gamepad',
+    },
+    {
+      id: 'C_BOOK',
+      name: 'Book',
+      color: '#14B8A6',
+      icon: 'fa-solid fa-book',
     },
   ];
   isOpenM: boolean = false;
-  agregarCategpria(cat: Category) {
-    this.categories.push(cat);
+  agregarTransaction(event: Transaction) {
+    console.log('llega la accion');
+    this.transactions.push(event);
   }
 }

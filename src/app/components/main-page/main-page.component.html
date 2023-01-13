@@ -5,10 +5,11 @@
     [categories]="categories"
     (onOpenModal)="isOpenM = $event"
   ></app-create-new-category>
-  <app-transactions></app-transactions>
+  <app-transactions [transactions]="transactions"></app-transactions>
 </div>
 <app-modal-category
   [isOpen]="isOpenM"
+  (omTransaction)="agregarTransaction($event)"
   (onCloseModal)="isOpenM = $event"
   [categories]="categories"
 ></app-modal-category>

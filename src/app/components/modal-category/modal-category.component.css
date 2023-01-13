@@ -61,7 +61,14 @@ p {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 16px;
 }
-
+.circle-icon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+.circle-icon:hover {
+  color: white;
+  background-color: rgb(101, 97, 97);
+}
 .circle-color:hover::before {
   border: 2px solid;
   border-color: inherit;
