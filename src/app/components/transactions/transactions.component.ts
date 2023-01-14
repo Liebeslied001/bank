@@ -76,7 +76,7 @@ export class TransactionsComponent {
 
   transactionsInit: any = [
     {
-      date: '07/03/2022',
+      date: '15/01/2023',
       total: 1540,
       moves: [
         {
@@ -106,7 +106,7 @@ export class TransactionsComponent {
       ]
     },
     {
-      date: '06/03/2022',
+      date: '14/01/2023',
       total: -320,
       moves: [
         {
@@ -144,7 +144,7 @@ export class TransactionsComponent {
       ]
     },
     {
-      date: '05/03/2022',
+      date: '13/01/2023',
       total: -500,
       moves: [
         {
@@ -236,6 +236,13 @@ export class TransactionsComponent {
     }
   }
 
+  formatDate = (date: string) => {
+    const [year, month, day] = date.split('-')
+
+    return [day, month, year].join('/')
+
+  }
+
   setDateFilter = (element: any) => {
     if (element.name === 'from') {
       if (element.value) {
@@ -243,7 +250,7 @@ export class TransactionsComponent {
           ...this.filterApplieds,
           date: {
             ...this.filterApplieds.date,
-            from: element.value
+            from: this.formatDate(element.value)
           }
         }
       } else {
@@ -261,7 +268,7 @@ export class TransactionsComponent {
           ...this.filterApplieds,
           date: {
             ...this.filterApplieds.date,
-            to: element.value
+            to: this.formatDate(element.value)
           }
         }
       } else {
@@ -277,7 +284,6 @@ export class TransactionsComponent {
 
   handleChangeInput = ($event: any) => {
     const element = $event.target
-    console.log($event.target.value,'valeueee')
     let filtered = []
 
     if (element.dataset.filter === 'category') {
@@ -291,10 +297,23 @@ export class TransactionsComponent {
       this.setDateFilter(element)
     }
 
-    //console.log(filtered, 'filtered')
-    console.log(this.filterApplieds, 'this.filterApplieds')
-    //this.transactions = filtered
-    filtered = this.transactionsInit.map((transaction: any) => {
+    filtered = this.transactionsInit.filter((transaction: any) => {
+      let currentTransaction = transaction
+      if (this.filterApplieds.date.from && !this.filterApplieds.date.to) {
+        currentTransaction =  transaction.date >= this.filterApplieds.date.from
+      }
+      if (this.filterApplieds.date.to && !this.filterApplieds.date.from) {
+        currentTransaction =  transaction.date >= this.filterApplieds.date.to
+      }
+      if (this.filterApplieds.date.from && this.filterApplieds.date.to) {
+        currentTransaction =  transaction.date >= this.filterApplieds.date.from && transaction.date <= this.filterApplieds.date.to
+      }
+      return currentTransaction
+    })
+
+
+    filtered = filtered.map((transaction: any) => {
+
       let filteredMoves = transaction.moves.filter(((move: any) => {
 
         let currentTransaction = transaction
@@ -311,15 +330,15 @@ export class TransactionsComponent {
           currentTransaction = currentTransaction && move.mount >= this.filterApplieds.amount.min && move.mount <= this.filterApplieds.amount.max
         }
         return currentTransaction
-        //return move.mount >= this.filterApplieds.amount.min || move.moun <= this.filterApplieds.amount.max
       }))
+
       return {
         ...transaction,
         moves: filteredMoves
       }
+
     })
 
-    console.log(filtered,'filtered')
     this.transactions = filtered
   }
 

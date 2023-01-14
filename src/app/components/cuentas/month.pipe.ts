@@ -11,8 +11,8 @@ export class MonthPipe implements PipeTransform {
     let format = ''
     let month = ''
     console.log(monthValue)
-    if (monthValue == '03') {
-      month = 'March'
+    if (monthValue == '01') {
+      month = 'January'
     }
     format = `${month}, ${year}`
     return format
