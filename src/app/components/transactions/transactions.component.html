@@ -32,6 +32,10 @@
         <input (input)="handleChangeInput($event)" type="checkbox" id="gift" value="gift" data-filter="category">
         Gifts
       </label>
+      <label for="health">
+        <input (input)="handleChangeInput($event)" type="checkbox" id="health" value="health" data-filter="category">
+        Health
+      </label>
     </div>
     <h2>Amount</h2>
     <div class="amount-section">
@@ -48,11 +52,11 @@
     <div class="amount-section">
       <div>
         <label>FROM</label>
-        <input type="date">
+        <input name='from' type="date" (input)="handleChangeInput($event)" data-filter="date">
       </div>
       <div>
         <label>TO</label>
-        <input type="date">
+        <input name="to" type="date" (input)="handleChangeInput($event)" data-filter="date">
       </div>
     </div>
   </div>

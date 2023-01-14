@@ -133,6 +133,14 @@ export class TransactionsComponent {
           mount: -50,
           alias: 'gift'
         },
+        {
+          category: this.category.health.text,
+          description: 'Description',
+          icon: this.category.health.icon,
+          color: this.category.health.color,
+          mount: 500,
+          alias: 'health'
+        },
       ]
     },
     {
@@ -144,7 +152,7 @@ export class TransactionsComponent {
           description: 'Description',
           icon: this.category.health.icon,
           color: this.category.health.color,
-          mount: -500,
+          mount: 50,
           alias: 'health'
         },
       ]
@@ -175,69 +183,144 @@ export class TransactionsComponent {
     }
   }
 
+  setCategoryFilter = (element: any) => {
+    if (element.checked) {
+      this.filterApplieds = {
+        ...this.filterApplieds,
+        category: [...this.filterApplieds.category, element.value]
+      }
+    } else {
+      this.filterApplieds = {
+        ...this.filterApplieds,
+        category: this.filterApplieds.category.filter((item: string) => item !== element.value )
+      }
+    }
+  }
+
+  setAmountFilter = (element: any) => {
+    if (element.name === 'min') {
+      if (element.value) {
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          amount: {
+            ...this.filterApplieds.amount,
+            min: Number(element.value)
+          }
+        }
+      } else {
+        const filterAmount = {...this.filterApplieds.amount}
+        delete filterAmount.min
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          amount: filterAmount
+        }
+      }
+    }
+    if (element.name === 'max') {
+      if (element.value) {
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          amount: {
+            ...this.filterApplieds.amount,
+            max: Number(element.value)
+          }
+        }
+      } else {
+        const filterAmount = {...this.filterApplieds.amount}
+        delete filterAmount.max
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          amount: filterAmount
+        }
+      }
+    }
+  }
+
+  setDateFilter = (element: any) => {
+    if (element.name === 'from') {
+      if (element.value) {
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          date: {
+            ...this.filterApplieds.date,
+            from: element.value
+          }
+        }
+      } else {
+        const filterDate = {...this.filterApplieds.date}
+        delete filterDate.from
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          date: filterDate
+        }
+      }
+    }
+    if (element.name === 'to') {
+      if (element.value) {
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          date: {
+            ...this.filterApplieds.date,
+            to: element.value
+          }
+        }
+      } else {
+        const filterDate = {...this.filterApplieds.date}
+        delete filterDate.to
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          date: filterDate
+        }
+      }
+    }
+  }
+
   handleChangeInput = ($event: any) => {
     const element = $event.target
     console.log($event.target.value,'valeueee')
     let filtered = []
 
     if (element.dataset.filter === 'category') {
-      console.log(element.checked)
-      if (element.checked) {
-        this.filterApplieds = {
-          ...this.filterApplieds,
-          category: [...this.filterApplieds.category, element.value]
-        }
-      } else {
-        this.filterApplieds = {
-          ...this.filterApplieds,
-          category: this.filterApplieds.category.filter((item: string) => item !== element.value )
-        }
-      }
-
-      if (this.filterApplieds.category.length > 0) {
-        filtered = this.transactionsInit.map((item: any) => {
-          let filteredMoves = item.moves.filter(((move: any) => this.filterApplieds.category.includes(move.alias)))
-          return {
-            ...item,
-            moves: filteredMoves
-          }
-        })
-
-      } else {
-        filtered = this.transactionsInit
-      }
+      this.setCategoryFilter(element)
     }
-
-
-
     if (element.dataset.filter === 'amount') {
-      if (element.name === 'min') {
-        this.filterApplieds = {
-          ...this.filterApplieds,
-          amount: {
-            ...this.filterApplieds.amount,
-            min: element.value
-          }
-        }
-      }
-      if (element.name === 'max') {
-        this.filterApplieds = {
-          ...this.filterApplieds,
-          amount: {
-            ...this.filterApplieds.amount,
-            max: element.value
-          }
-        }
-      }
-
-
-
+      this.setAmountFilter(element)
     }
 
-    console.log(filtered, 'filtered')
-    console.log(this.filterApplieds, 'this.filterApplieds')
-    this.transactions = filtered
+    if (element.dataset.filter === 'date') {
+      this.setDateFilter(element)
+    }
 
+    //console.log(filtered, 'filtered')
+    console.log(this.filterApplieds, 'this.filterApplieds')
+    //this.transactions = filtered
+    filtered = this.transactionsInit.map((transaction: any) => {
+      let filteredMoves = transaction.moves.filter(((move: any) => {
+
+        let currentTransaction = transaction
+        if (this.filterApplieds.category.length > 0) {
+          currentTransaction = this.filterApplieds.category.includes(move.alias)
+        }
+        if (this.filterApplieds.amount.min && !this.filterApplieds.amount.max) {
+          currentTransaction = currentTransaction && move.mount >= this.filterApplieds.amount.min
+        }
+        if (this.filterApplieds.amount.max && !this.filterApplieds.amount.min) {
+          currentTransaction = currentTransaction && move.mount <= this.filterApplieds.amount.max
+        }
+        if (this.filterApplieds.amount.min && this.filterApplieds.amount.max) {
+          currentTransaction = currentTransaction && move.mount >= this.filterApplieds.amount.min && move.mount <= this.filterApplieds.amount.max
+        }
+        return currentTransaction
+        //return move.mount >= this.filterApplieds.amount.min || move.moun <= this.filterApplieds.amount.max
+      }))
+      return {
+        ...transaction,
+        moves: filteredMoves
+      }
+    })
+
+    console.log(filtered,'filtered')
+    this.transactions = filtered
   }
 
 }
