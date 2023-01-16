@@ -10,7 +10,6 @@ export class MonthPipe implements PipeTransform {
     const year = value.split('/')[2]
     let format = ''
     let month = ''
-    console.log(monthValue)
     if (monthValue == '01') {
       month = 'January'
     }

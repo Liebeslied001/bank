@@ -320,13 +320,13 @@ export class TransactionsComponent {
         if (this.filterApplieds.category.length > 0) {
           currentTransaction = this.filterApplieds.category.includes(move.alias)
         }
-        if (this.filterApplieds.amount.min && !this.filterApplieds.amount.max) {
+        if (this.filterApplieds.amount.hasOwnProperty('min') && !this.filterApplieds.amount.hasOwnProperty('max')) {
           currentTransaction = currentTransaction && move.mount >= this.filterApplieds.amount.min
         }
-        if (this.filterApplieds.amount.max && !this.filterApplieds.amount.min) {
+        if (this.filterApplieds.amount.hasOwnProperty('max') && !this.filterApplieds.amount.hasOwnProperty('min')) {
           currentTransaction = currentTransaction && move.mount <= this.filterApplieds.amount.max
         }
-        if (this.filterApplieds.amount.min && this.filterApplieds.amount.max) {
+        if (this.filterApplieds.amount.hasOwnProperty('min') && this.filterApplieds.amount.hasOwnProperty('max')) {
           currentTransaction = currentTransaction && move.mount >= this.filterApplieds.amount.min && move.mount <= this.filterApplieds.amount.max
         }
         return currentTransaction
