@@ -26,4 +26,8 @@ export class SideBarComponent {
     }
   ]
 
+  handleClickSideBar = ($event: any, sideAlias: string) =>{
+    this.active = sideAlias;
+  };
+
 }

@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   display: grid;
-  grid-template-columns: 15% 60% 25%;
+  grid-template-columns: 15% 0% 60% 25%;
 }
 
 app-side-bar {

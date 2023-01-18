@@ -15,6 +15,9 @@ import { PipesUtilsPipe } from './pipes-utils.pipe';
 import { PipesPipe } from './components/cuentas/pipes.pipe';
 import { DayPipe } from './components/cuentas/day.pipe';
 import { MonthPipe } from './components/cuentas/month.pipe';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { BudgetsComponent } from './components/budgets/budgets.component';
+import { TransactionsLayoutComponent } from './components/transactions-layout/transactions-layout.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,9 @@ import { MonthPipe } from './components/cuentas/month.pipe';
     PipesPipe,
     DayPipe,
     MonthPipe,
+    NotFoundComponent,
+    BudgetsComponent,
+    TransactionsLayoutComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, CategoriesModule],
   providers: [],

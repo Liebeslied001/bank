@@ -1,0 +1,27 @@
+.container-st {
+    width: 100%;
+    height: 100vh;
+    padding: 60px;
+    font-family: inter;
+    color: var(--color-gray-dark);
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h1,
+  p,
+  h5 {
+    font-family: inter;
+  }
+  
+  .nav {
+    width: 300px;
+    margin: 10px 0;
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    border-bottom: 3px solid var(--color-gray-dark-separator);
+  }
+  
