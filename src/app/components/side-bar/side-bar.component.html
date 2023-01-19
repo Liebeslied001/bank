@@ -2,11 +2,9 @@
   <div class="nav-item">
     <h2>{{"{ expensable }"}}</h2>
     <ul>
-      <li (click)="handleClickSideBar($event, nav.name)" *ngFor="let nav of menu" [ngClass]="active === nav.name ? 'item--active': ''">
-        <div routerLink="/{{nav.name}}" >
+      <li routerLink="/{{nav.name}}" (click)="handleClickSideBar(nav.name)" *ngFor="let nav of menu" [ngClass]="active === nav.name ? 'item--active': ''">
           <i class="{{nav.icon}}"></i>
           <a >{{nav.text}}</a>
-        </div>
       </li>
     </ul>
   </div>
