@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Transaction } from 'src/app/models/transaction.model';
+import { ProductsService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-transactions',
@@ -13,6 +14,10 @@ export class TransactionsComponent {
     category: '',
     amount: 0,
   };
+
+  constructor(private _servicio: ProductsService) {
+    console.log(_servicio.products);
+  }
 
   private colors: any = {
     red: '#f44261',

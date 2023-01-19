@@ -1,0 +1,18 @@
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 15% 60% 25%;
+}
+
+app-side-bar {
+  width: 100%;
+  background-color: aquamarine;
+}
+
+app-create-new-category {
+  width: 100%;
+}
+
+app-transactions {
+  width: 100%;
+}

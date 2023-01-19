@@ -1,0 +1,30 @@
+<form class="container">
+  <div class="">
+    <label class="form-label" for="nombre">Name</label>
+    <input
+      name="nombre"
+      class="form-control"
+      type="text"
+      id="nombre"
+      [(ngModel)]="usuario.email"
+      required
+    />
+  </div>
+  <div class="">
+    <label class="form-label" for="password">password</label>
+    <input
+      required
+      class="form-control"
+      type="text"
+      id="password"
+      name="pass"
+      [(ngModel)]="usuario.password"
+    />
+  </div>
+  <input
+    routerLink="/main"
+    type="button"
+    value="Enviar"
+    (click)="enviarForm()"
+  />
+</form>

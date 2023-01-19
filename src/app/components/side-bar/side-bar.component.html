@@ -1,16 +1,19 @@
 <div class="nav">
   <div class="nav-item">
-    <h2>{{"{ expensable }"}}</h2>
+    <h2>{{ "{ expensable }" }}</h2>
     <ul>
-      <li *ngFor="let nav of menu" [ngClass]="active === nav.name ? 'item--active': ''">
-        <i class="{{nav.icon}}"></i>
-        <a href="#" target="_blank">{{nav.text}}</a>
+      <li
+        *ngFor="let nav of menu"
+        [ngClass]="active === nav.name ? 'item--active' : ''"
+      >
+        <i class="{{ nav.icon }}"></i>
+        <a [routerLink]="nav.name">{{ nav.text }}</a>
       </li>
     </ul>
   </div>
   <div class="nav-footer">
-    <p class="nav-item--info">Testino Diprueba</p>
-    <p class="nav-item--email">testino@mail.com</p>
+    <p class="nav-item--info">{{ user.first_name }}</p>
+    <p class="nav-item--email">{{ user.email }}</p>
     <p class="nav-item--info">Log out</p>
   </div>
 </div>
