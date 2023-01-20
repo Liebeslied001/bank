@@ -47,9 +47,9 @@
         type="text"
         matInput
         [ngClass]="emailFormControl"
-        placeholder="name"
+        placeholder="First name..."
         name="first"
-        [(ngModel)]="usuario.password"
+        [(ngModel)]="usuario.firstName"
         required
       />
       <mat-error *ngIf="emailFormControl.hasError('required')">
@@ -63,9 +63,9 @@
         type="text"
         matInput
         [ngClass]="emailFormControl"
-        placeholder="lastname"
+        placeholder="lastname..."
         name="last"
-        [(ngModel)]="usuario.password"
+        [(ngModel)]="usuario.lastName"
         required
       />
       <mat-error *ngIf="emailFormControl.hasError('required')">
@@ -79,9 +79,9 @@
         type="number"
         matInput
         [ngClass]="emailFormControl"
-        placeholder="921321313"
+        placeholder="phone..."
         name="Phone"
-        [(ngModel)]="usuario.password"
+        [(ngModel)]="usuario.phone"
         required
       />
       <mat-error *ngIf="emailFormControl.hasError('required')">
@@ -100,7 +100,7 @@
       </button>
     </div>
     <div class="example-link-row links">
-      <a routerLink="login">Login</a>
+      <a routerLink="/login">Login</a>
     </div>
   </form>
 </div>

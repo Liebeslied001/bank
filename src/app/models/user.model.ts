@@ -6,3 +6,10 @@ export interface User {
   phone?: string;
   token?: string;
 }
+export interface UserRegister {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+}

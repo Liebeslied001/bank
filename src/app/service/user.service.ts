@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../models/user.model';
+import { User, UserRegister } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +30,14 @@ export class UserService {
         localStorage.setItem('user', JSON.stringify(this.user));
       });
   }
-
+  signUp(userRegister: UserRegister): void {
+    this.http
+      .post('https://expensable-api.herokuapp.com/signup', userRegister)
+      .subscribe((res: any) => {
+        this.user = res;
+        localStorage.setItem('user', JSON.stringify(this.user));
+      });
+  }
   logout() {
     localStorage.removeItem('user');
   }

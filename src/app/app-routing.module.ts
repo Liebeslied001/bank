@@ -16,15 +16,15 @@ const routes: Routes = [
   { path: 'main', component: MainComponent, canActivate: [GuardGuard] },
   {
     path: 'category',
-    component: CreateNewCategoryComponent,
+    component: MainComponent,
     canActivate: [GuardGuard],
   },
   {
     path: 'transaction',
-    component: TransactionsComponent,
+    component: MainComponent,
     canActivate: [GuardGuard],
   },
-  { path: 'budget', component: BudgetComponent, canActivate: [GuardGuard] },
+  { path: 'budget', component: MainComponent, canActivate: [GuardGuard] },
   { path: '**', component: LoginComponent },
 ];
 

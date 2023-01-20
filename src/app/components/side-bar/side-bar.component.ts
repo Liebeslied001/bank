@@ -12,17 +12,17 @@ export class SideBarComponent {
 
   public menu: NavMainItemModel[] = [
     {
-      name: 'category',
+      name: '/category',
       text: 'Categories',
       icon: 'fa-solid fa-house-chimney-window',
     },
     {
-      name: 'transaction',
+      name: '/transaction',
       text: 'Transactions',
       icon: 'fa-regular fa-rectangle-list',
     },
     {
-      name: 'budget',
+      name: '/budget',
       text: 'Budgets',
       icon: 'fa-solid fa-circle-nodes',
     },

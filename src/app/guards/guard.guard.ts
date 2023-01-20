@@ -29,7 +29,7 @@ export class GuardGuard implements CanActivate {
       password: '',
     };
 
-    if (token.email === 'test1@mail.com') {
+    if (token.email !== '') {
       return true;
     } else {
       return false;
