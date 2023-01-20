@@ -24,6 +24,7 @@ import { MainComponent } from './pages/main/main.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SingUpComponent } from './pages/sing-up/sing-up.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BudgetComponent,
     MainComponent,
     LoginComponent,
+    SingUpComponent,
   ],
   imports: [
     BrowserModule,

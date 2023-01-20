@@ -1,5 +1,5 @@
 <div class="contenedor">
-  <h1>Login</h1>
+  <h1>Sign Up</h1>
   <form class="example-form">
     <mat-form-field class="example-full-width">
       <mat-label>Email</mat-label>
@@ -41,6 +41,54 @@
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field class="example-full-width">
+      <mat-label>First Name</mat-label>
+      <input
+        type="text"
+        matInput
+        [ngClass]="emailFormControl"
+        placeholder="name"
+        name="first"
+        [(ngModel)]="usuario.password"
+        required
+      />
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        FirstName is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Last Name</mat-label>
+      <input
+        type="text"
+        matInput
+        [ngClass]="emailFormControl"
+        placeholder="lastname"
+        name="last"
+        [(ngModel)]="usuario.password"
+        required
+      />
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        LastName is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Phone</mat-label>
+      <input
+        type="number"
+        matInput
+        [ngClass]="emailFormControl"
+        placeholder="921321313"
+        name="Phone"
+        [(ngModel)]="usuario.password"
+        required
+      />
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Phone is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
     <div class="example-button-row">
       <button
         routerLink="/main"
@@ -48,11 +96,11 @@
         color="accent"
         (click)="enviarForm()"
       >
-        LOGIN
+        SING UP
       </button>
     </div>
     <div class="example-link-row links">
-      <a routerLink="singup">Sign Up</a>
+      <a routerLink="login">Login</a>
     </div>
   </form>
 </div>

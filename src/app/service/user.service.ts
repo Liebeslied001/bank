@@ -30,6 +30,7 @@ export class UserService {
         localStorage.setItem('user', JSON.stringify(this.user));
       });
   }
+
   logout() {
     localStorage.removeItem('user');
   }

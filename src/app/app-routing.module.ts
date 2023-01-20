@@ -7,9 +7,12 @@ import { TransactionsComponent } from './components/transactions/transactions.co
 import { GuardGuard } from './guards/guard.guard';
 import { LoginComponent } from './pages/login/login.component';
 import { MainComponent } from './pages/main/main.component';
+import { SingUpComponent } from './pages/sing-up/sing-up.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'singup', component: SingUpComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'main', component: MainComponent, canActivate: [GuardGuard] },
   {
     path: 'category',
