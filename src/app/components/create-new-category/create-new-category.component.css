@@ -4,8 +4,6 @@
   padding: 60px;
   font-family: inter;
   color: var(--color-gray-dark);
-  overflow: scroll;
-  scrollbar-width: none;
 }
 
 h1 {

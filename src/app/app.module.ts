@@ -25,6 +25,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { TransactionPageComponent } from './pages/transaction-page/transaction-page.component';
+import { BudgetPageComponent } from './pages/budget-page/budget-page.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { SingUpComponent } from './pages/sing-up/sing-up.component';
     MainComponent,
     LoginComponent,
     SingUpComponent,
+    NotFoundComponent,
+    TransactionPageComponent,
+    BudgetPageComponent,
   ],
   imports: [
     BrowserModule,

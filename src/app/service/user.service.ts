@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { User, UserRegister } from '../models/user.model';
 
 @Injectable({
@@ -7,7 +8,10 @@ import { User, UserRegister } from '../models/user.model';
 })
 export class UserService {
   user: User = {};
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private router: Router
+    ) {
     this.user = JSON.parse(localStorage.getItem('user')!) || {};
   }
   getToken(): string {
@@ -26,8 +30,9 @@ export class UserService {
       .post('https://expensable-api.herokuapp.com/login', data)
       .subscribe((res: any) => {
         this.user = res;
-        console.log(res);
+        console.log(res, 'res?????????????');
         localStorage.setItem('user', JSON.stringify(this.user));
+        this.router.navigate(['/categories'])
       });
   }
   signUp(userRegister: UserRegister): void {
