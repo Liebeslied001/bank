@@ -22,12 +22,13 @@ import { PipesUtilsPipe } from './pipes-utils.pipe';
 import { ProductsService } from './service/product.service';
 import { MainComponent } from './pages/main/main.component';
 import { LoginComponent } from './pages/login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TransactionPageComponent } from './pages/transaction-page/transaction-page.component';
 import { BudgetPageComponent } from './pages/budget-page/budget-page.component';
+import { AuthInterceptorService } from './auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,11 @@ import { BudgetPageComponent } from './pages/budget-page/budget-page.component';
     BrowserAnimationsModule,
     MaterialModule,
   ],
-  providers: [ProductsService],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  }, ProductsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

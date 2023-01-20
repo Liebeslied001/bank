@@ -30,7 +30,6 @@ export class UserService {
       .post('https://expensable-api.herokuapp.com/login', data)
       .subscribe((res: any) => {
         this.user = res;
-        console.log(res, 'res?????????????');
         localStorage.setItem('user', JSON.stringify(this.user));
         this.router.navigate(['/categories'])
       });
