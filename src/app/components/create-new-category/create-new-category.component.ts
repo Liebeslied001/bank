@@ -8,16 +8,7 @@ import { CategoriesService } from 'src/app/service/categories.service';
   styleUrls: ['./create-new-category.component.css'],
 })
 export class CreateNewCategoryComponent {
-  listCategory: any = []
-  constructor(
-    private categoriesService: CategoriesService
-  ) {
-
-    console.log('se carga')
-    this.listCategory = this.categoriesService.getAll()
-    console.log('create view', this.listCategory)
-  }
-
+  public listCategory: any = []
   private colors: any = {
     red: '#f44261',
     orange: '#f97216',
@@ -34,7 +25,7 @@ export class CreateNewCategoryComponent {
     'light-blue': '#0ea5e9',
   };
 
-  private icons: any = {
+  public icons: any = {
     building: 'fa-solid fa-building-columns',
     shopping: 'fa-solid fa-cart-shopping',
     car: 'fa-solid fa-car',
@@ -46,9 +37,8 @@ export class CreateNewCategoryComponent {
     cart: 'fa-solid fa-cart-shopping',
     game: 'fa-solid fa-gamepad',
     bill: 'fa-solid fa-gamepad',
-
-
-  };
+    bank: 'fa-solid fa-building-columns',
+  }
   public tabActive: string = 'expenses';
   public isOpenModal: boolean = false;
   public tabs: TabModelItem[] = [
@@ -64,70 +54,32 @@ export class CreateNewCategoryComponent {
     },
   ];
 
-  public categories = [
-    {
-      icon: this.icons.building,
-      text: 'Rent',
-      total: 500,
-      color: this.colors.gray,
-      alias: 'rent',
-    },
-    {
-      icon: this.icons.shopping,
-      text: 'Groceries',
-      total: 100,
-      color: this.colors.turqoise,
-      alias: 'grocery',
-    },
-    {
-      icon: this.icons.car,
-      text: 'Transport',
-      total: 150,
-      color: this.colors.orange,
-      alias: 'transport',
-    },
-    {
-      icon: this.icons.health,
-      text: 'Health',
-      total: 200,
-      color: this.colors.red,
-      alias: 'health',
-    },
-    {
-      icon: this.icons.gift,
-      text: 'Gifts',
-      total: 50,
-      color: this.colors.purple,
-      alias: 'gift',
-    },
-    {
-      icon: this.icons.education,
-      text: 'Education',
-      total: 250,
-      color: this.colors['blue-light'],
-      alias: 'education',
-    },
-    //
-    {
-      icon: this.icons.gamepad,
-      text: 'Gamepad',
-      total: 400,
-      color: this.colors.purple,
-      alias: 'game',
-    },
-    {
-      icon: this.icons.creddit,
-      text: 'creddit',
-      total: 2000,
-      color: this.colors['blue-light'],
-      alias: 'creddit',
-    },
-  ];
-
   color: string = '#0CB7D5';
   money: number = 0;
   textSalario: string = '';
   icon: string = '';
+
+  constructor(
+    private categoriesService: CategoriesService
+  ) {
+    this.listCategory = this.categoriesService.getAll()
+  }
+
+  ngOnInit() {
+    this.categoriesService.getAll().subscribe((res: any) => {
+      this.listCategory = this.hydratorData(res)
+    })
+  }
+
+  hydratorData = (res: any) => res.map((category: any) => {
+    const totalTransactions = category.transactions.reduce((accumulator:number, cost: any) => category.transaction_type === 'income' ? accumulator + cost.amount : accumulator - cost.amount, 0)
+    return ({
+      name: category.name,
+      icon: this.icons?.[category?.icon],
+      color: this.colors?.[category?.color],
+      total: totalTransactions
+    })
+  })
 
   handleClickTab = ($event: any, tabAlias: string) => {
     console.log(tabAlias);
@@ -148,8 +100,8 @@ export class CreateNewCategoryComponent {
     console.log(category, 'category v');
 
     this.isOpenModal = false;
-    this.categories = [
-      ...this.categories,
+    this.listCategory = [
+      ...this.listCategory,
       {
         icon: this.icons[category.icon],
         text: category.name,

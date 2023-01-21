@@ -11,10 +11,8 @@ export class CategoriesService {
   ) { }
 
   getAll = () => {
-    this.http
+    return this.http
       .get('https://expensable-api.herokuapp.com/categories')
-      .subscribe((res: any) => {
-        console.log(res)
-      })
+
   }
 }
