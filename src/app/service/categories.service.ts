@@ -1,20 +1,44 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Categories, CategoryModel } from '../models/category.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoriesService {
+  constructor(private http: HttpClient) {}
+  private _listCategory: CategoryModel[] = [];
 
-  constructor(
-    private http: HttpClient
-  ) { }
-
-  getAll = () => {
+  get listCategory(): CategoryModel[] {
+    return [...this._listCategory];
+  }
+  getAll() {
     this.http
-      .get('https://expensable-api.herokuapp.com/categories')
-      .subscribe((res: any) => {
-        console.log(res)
-      })
+      .get<CategoryModel[]>('https://expensable-api.herokuapp.com/categories')
+      .subscribe({
+        next: (res) => {
+          this._listCategory = res;
+          console.log(this._listCategory);
+        },
+        error: (err) => {
+          console.log('token expirado');
+          localStorage.removeItem('user');
+        },
+      });
+  }
+  createCategory(data: CategoryModel) {
+    this.http
+      .post<CategoryModel>(
+        'https://expensable-api.herokuapp.com/categories',
+        data
+      )
+      .subscribe({
+        next: (categories: CategoryModel) => {
+          this._listCategory = [...this._listCategory, categories];
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 }

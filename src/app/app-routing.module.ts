@@ -14,8 +14,9 @@ import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { TransactionPageComponent } from './pages/transaction-page/transaction-page.component';
 
 const routes: Routes = [
-  { path: 'singup', component: SingUpComponent, canActivate: [IsLoggedGuard] },
-  { path: 'login', component: LoginComponent, canActivate: [IsLoggedGuard] },
+  { path: '', component: LoginComponent },
+  { path: 'singup', component: SingUpComponent },
+  { path: 'login', component: LoginComponent },
   {
     path: 'categories',
     component: MainComponent,
@@ -26,8 +27,12 @@ const routes: Routes = [
     component: TransactionPageComponent,
     canActivate: [GuardGuard],
   },
-  { path: 'budgets', component: BudgetPageComponent, canActivate: [GuardGuard] },
-  { path: '**', component:  NotFoundComponent},
+  {
+    path: 'budgets',
+    component: BudgetPageComponent,
+    canActivate: [GuardGuard],
+  },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

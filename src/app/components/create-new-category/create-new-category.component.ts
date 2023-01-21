@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Categories, CategoryModel } from 'src/app/models/category.model';
 import { TabModelItem } from 'src/app/models/tab.model';
 import { CategoriesService } from 'src/app/service/categories.service';
 
@@ -8,14 +9,11 @@ import { CategoriesService } from 'src/app/service/categories.service';
   styleUrls: ['./create-new-category.component.css'],
 })
 export class CreateNewCategoryComponent {
-  listCategory: any = []
-  constructor(
-    private categoriesService: CategoriesService
-  ) {
-
-    console.log('se carga')
-    this.listCategory = this.categoriesService.getAll()
-    console.log('create view', this.listCategory)
+  get listCategory(): CategoryModel[] {
+    return this.categoriesService.listCategory;
+  }
+  constructor(private categoriesService: CategoriesService) {
+    this.categoriesService.getAll();
   }
 
   private colors: any = {
@@ -46,8 +44,6 @@ export class CreateNewCategoryComponent {
     cart: 'fa-solid fa-cart-shopping',
     game: 'fa-solid fa-gamepad',
     bill: 'fa-solid fa-gamepad',
-
-
   };
   public tabActive: string = 'expenses';
   public isOpenModal: boolean = false;
