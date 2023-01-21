@@ -11,7 +11,19 @@ export class AddNewCategoriesComponent {
   @Output() clickClose: EventEmitter<any> = new EventEmitter();
 
   get categories(): CategoryModel[] {
-    return this.categoryService.listCategory;
+    //filtrar repetidos
+    const reduceCategory = this.categoryService.listCategory.reduce(
+      (acc: any, act: CategoryModel) => {
+        if (acc.findIndex((accc: any) => accc.color === act.color) > -1) {
+          return acc;
+        }
+        console.log(acc);
+        acc.push(act);
+        return acc;
+      },
+      []
+    );
+    return reduceCategory;
   }
   newCategory: CategoryModel = {
     name: '',
