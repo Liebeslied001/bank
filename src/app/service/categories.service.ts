@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Categories, CategoryModel } from '../models/category.model';
+import { CategoryModel, Transaction } from '../models/category.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,10 +18,9 @@ export class CategoriesService {
       .subscribe({
         next: (res) => {
           this._listCategory = res;
-          console.log(this._listCategory);
         },
         error: (err) => {
-          console.log('token expirado');
+          alert('token expirado');
           localStorage.removeItem('user');
         },
       });
@@ -40,5 +39,10 @@ export class CategoriesService {
           console.log(err);
         },
       });
+  }
+  get getTransactions() {
+    return this.http.get<CategoryModel[]>(
+      'https://expensable-api.herokuapp.com/categories'
+    );
   }
 }

@@ -27,7 +27,7 @@
       </div>
       <div class="prise">
         <p class="precio">$ 1,250</p>
-        <p>Total Expenses</p>
+        <p class="expenses">Total Expenses</p>
       </div>
     </div>
     <div class="button-cont">
@@ -35,8 +35,12 @@
         *ngFor="let category of listCategory"
         [icon]="category.icon"
         [textSalario]="category.name"
-        [money]="0"
         [color]="category.color"
+        [money]="
+          category.transactions![0] === undefined
+            ? 0
+            : category.transactions![0].id
+        "
       ></app-button>
       <div class="add-button" (click)="handleClickAddCategory()">
         <i class="fa-solid fa-plus"></i>

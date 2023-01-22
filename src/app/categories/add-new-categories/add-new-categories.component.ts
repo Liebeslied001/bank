@@ -26,6 +26,7 @@ export class AddNewCategoriesComponent {
     return reduceCategory;
   }
   newCategory: CategoryModel = {
+    id: 0,
     name: '',
     color: 'red',
     icon: 'groceries',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Categories, CategoryModel } from 'src/app/models/category.model';
+import { CategoryModel } from 'src/app/models/category.model';
 import { TabModelItem } from 'src/app/models/tab.model';
 import { CategoriesService } from 'src/app/service/categories.service';
 
