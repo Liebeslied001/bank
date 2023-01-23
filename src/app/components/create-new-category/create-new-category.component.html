@@ -1,13 +1,8 @@
 <div class="container-st">
   <h1>Categories</h1>
   <nav class="nav">
-    <div
-      (click)="handleClickTab($event, tabItem.alias)"
-      *ngFor="let tabItem of tabs"
-      class="nav-item"
-      [ngClass]="tabActive === tabItem.alias ? 'nav-item--active' : ''"
-    >
-      <div class="nav-icon">{{ tabItem.icon }}</div>
+    <div (click)="handleClickTab($event, tabItem.alias)" *ngFor="let tabItem of tabs" class="nav-item" [ngClass]="tabActive === tabItem.alias ? 'nav-item--active' : ''">
+      <div class="nav-icon">{{tabItem.icon}}</div>
       <p>{{ tabItem.name }}</p>
     </div>
   </nav>
@@ -27,28 +22,24 @@
       </div>
       <div class="prise">
         <p class="precio">$ 1,250</p>
-        <p class="expenses">Total Expenses</p>
+        <p>Total Expenses</p>
       </div>
     </div>
     <div class="button-cont">
       <app-button
-        *ngFor="let category of listCategory"
-        [icon]="category.icon"
-        [textSalario]="category.name"
-        [color]="category.color"
-        [money]="
-          category.transactions![0] === undefined
-            ? 0
-            : category.transactions![0].id
-        "
-      ></app-button>
+      *ngFor="let category of categories"
+          [icon]="category.icon"
+          [textSalario]="category.text"
+          [money]="category.total"
+          [color]="category.color"
+        ></app-button>
       <div class="add-button" (click)="handleClickAddCategory()">
         <i class="fa-solid fa-plus"></i>
       </div>
       <app-add-new-categories
         [display]="isOpenModal"
-        (clickClose)="handleClickOutput($event)"
-      ></app-add-new-categories>
+        (clickSend)="getNewCategory($event)"
+        (clickClose)="handleClickOutput($event)"></app-add-new-categories>
     </div>
   </div>
 </div>

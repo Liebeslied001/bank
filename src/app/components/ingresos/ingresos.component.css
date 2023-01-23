@@ -17,16 +17,15 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  background-color: gray;
   color: #fff;
   display: grid;
   place-content: center;
   margin-right: 10px;
 }
 
-.icon img {
-  filter: invert();
-  width: 25px;
-  height: 25px;
+.icon i {
+  font-size: 1.2rem;
 }
 
 .text p:first-child {
@@ -35,7 +34,6 @@
 }
 
 .text p:last-child {
-  font-size: 0.8rem;
   color: #333;
   font-weight: 600;
 }
