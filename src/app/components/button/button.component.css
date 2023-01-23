@@ -45,3 +45,8 @@ p {
   font-size: 2rem;
   color: #333;
 }
+img {
+  width: 30px;
+  height: 30px;
+  filter: invert();
+}

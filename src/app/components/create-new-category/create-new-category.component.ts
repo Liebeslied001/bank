@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { CategoryModel } from 'src/app/models/category.model';
 import { TabModelItem } from 'src/app/models/tab.model';
+import { CategoriesService } from 'src/app/service/categories.service';
 
 @Component({
   selector: 'app-create-new-category',
@@ -7,6 +9,13 @@ import { TabModelItem } from 'src/app/models/tab.model';
   styleUrls: ['./create-new-category.component.css'],
 })
 export class CreateNewCategoryComponent {
+  get listCategory(): CategoryModel[] {
+    return this.categoriesService.listCategory;
+  }
+  constructor(private categoriesService: CategoriesService) {
+    this.categoriesService.getAll();
+  }
+
   private colors: any = {
     red: '#f44261',
     orange: '#f97216',
@@ -18,6 +27,9 @@ export class CreateNewCategoryComponent {
     blue: '#3b82f6',
     gray: '#6b7380',
     purple: '#8b5cf6',
+    teal: 'teal',
+    cyan: 'cyan',
+    'light-blue': '#0ea5e9',
   };
 
   private icons: any = {
@@ -29,6 +41,9 @@ export class CreateNewCategoryComponent {
     education: 'fa-solid fa-chalkboard',
     gamepad: 'fa-solid fa-gamepad',
     creddit: 'fa-solid fa-credit-card',
+    cart: 'fa-solid fa-cart-shopping',
+    game: 'fa-solid fa-gamepad',
+    bill: 'fa-solid fa-gamepad',
   };
   public tabActive: string = 'expenses';
   public isOpenModal: boolean = false;

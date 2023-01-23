@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CategoryModel } from 'src/app/models/category.model';
+import { CategoriesService } from 'src/app/service/categories.service';
 @Component({
   selector: 'app-add-new-categories',
   templateUrl: './add-new-categories.component.html',
@@ -8,61 +9,31 @@ import { CategoryModel } from 'src/app/models/category.model';
 export class AddNewCategoriesComponent {
   @Input() display: boolean = false;
   @Output() clickClose: EventEmitter<any> = new EventEmitter();
-  @Output() clickSend: EventEmitter<any> = new EventEmitter();
 
-  public colors: Array<any> = [
-    {
-      name: 'red',
-      className: 'circle-color circle-red red',
-    },
-    {
-      name: 'orange',
-      className: 'circle-color circle-dark-orange orange',
-    },
-    {
-      name: 'yellow',
-      className: 'circle-color circle-orange',
-    },
-    {
-      name: 'green',
-      className: 'circle-color circle-dark-green',
-    },
-    {
-      name: 'green-aqua',
-      className: 'circle-color circle-green',
-    },
-    {
-      name: 'turqoise',
-      className: 'circle-color circle-sky-blue',
-    },
-    {
-      name: 'blue-light',
-      className: 'circle-color circle-dark-sky-blue',
-    },
-    {
-      name: 'blue',
-      className: 'circle-color circle-blue',
-    },
-  ];
-
-  /*private colors: any = {
-    red: '#f44261',
-    orange: '#f97216',
-    yellow: '#f59e0b',
-    green: '#10b981',
-    'green-aqua': '#10b981',
-    turqoise: '#06b6d4',
-    'blue-light': '#0ea5e9',
-    blue: '#3b82f6',
-  }*/
-
+  get categories(): CategoryModel[] {
+    //filtrar repetidos
+    const reduceCategory = this.categoryService.listCategory.reduce(
+      (acc: any, act: CategoryModel) => {
+        if (acc.findIndex((accc: any) => accc.color === act.color) > -1) {
+          return acc;
+        }
+        console.log(acc);
+        acc.push(act);
+        return acc;
+      },
+      []
+    );
+    return reduceCategory;
+  }
   newCategory: CategoryModel = {
+    id: 0,
     name: '',
     color: 'red',
     icon: 'groceries',
+    transaction_type: 'expense',
   };
 
-  constructor() {}
+  constructor(private categoryService: CategoriesService) {}
 
   ngOnInit(): void {}
 
@@ -73,9 +44,9 @@ export class AddNewCategoriesComponent {
   };
 
   handleClickColor = ($event: any) => {
-    const element = $event.target;
-    const currentColor = element.dataset.color;
-    console.log(element.classList);
+    const currentColor = $event.target.dataset.color;
+    console.log($event.target.dataset);
+
     if (currentColor) {
       this.setCategory('color', currentColor);
     }
@@ -106,7 +77,8 @@ export class AddNewCategoriesComponent {
       this.newCategory.name !== '' &&
       this.newCategory.icon !== ''
     ) {
-      this.clickSend.emit(this.newCategory);
+      this.categoryService.createCategory(this.newCategory);
+      console.log(this.newCategory);
       this.clickClose.emit();
     }
   };

@@ -1,11 +1,16 @@
 <div class="item">
   <div class="section">
-    <div class="icon" [ngStyle]="{ 'background-color': color }">
-      <i [ngClass]="icon"></i>
+    <div
+      class="icon"
+      [ngStyle]="{
+        'background-color': color == 'light-blue' ? '#09a1d4' : color
+      }"
+    >
+      <img [src]="'../../../assets/svg/' + icon + '.svg'" alt="" />
     </div>
     <div class="text">
       <p>{{ name }}</p>
-      <p>Description</p>
+      <p>{{ notas ? notas : "nothing" }}</p>
     </div>
   </div>
   <div class="total" [ngClass]="cantidad > 0 ? 'total--plus' : 'total--minus'">
