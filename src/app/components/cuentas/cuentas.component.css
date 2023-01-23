@@ -35,3 +35,8 @@
   font-size: 1.8rem;
   font-weight: bold;
 }
+
+
+.total--plus p{
+  color: var(--color-green);
+}

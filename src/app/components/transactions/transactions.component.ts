@@ -1,22 +1,20 @@
 import { Component, Input } from '@angular/core';
 import { Transaction } from 'src/app/models/transaction.model';
-import { ProductsService } from 'src/app/service/product.service';
-
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.css'],
 })
 export class TransactionsComponent {
+
+  @Input() listTransaction: any = []
+  @Input() listCategory: any = []
+
   @Input() transaction: Transaction = {
     id: 0,
     icon: '',
     category: '',
     amount: 0,
-  };
-
-  constructor(private _servicio: ProductsService) {
-    console.log(_servicio.products);
   }
 
   private colors: any = {
@@ -29,8 +27,8 @@ export class TransactionsComponent {
     'blue-light': '#0ea5e9',
     blue: '#3b82f6',
     gray: '#6b7380',
-    purple: '#8b5cf6',
-  };
+    purple: '#8b5cf6'
+  }
 
   private icons: any = {
     building: 'fa-solid fa-building-columns',
@@ -38,211 +36,220 @@ export class TransactionsComponent {
     car: 'fa-solid fa-car',
     health: 'fa-solid fa-laptop-medical',
     gift: 'fa-solid fa-gift',
-    education: 'fa-solid fa-chalkboard',
-  };
-
-  private category = {
-    rent: {
-      text: 'Rent',
-      color: this.colors.gray,
-      icon: this.icons.building,
-    },
-    salary: {
-      text: 'Salary',
-      color: this.colors.green,
-      icon: this.icons.building,
-    },
-    grocery: {
-      text: 'Groceries',
-      color: this.colors.turqoise,
-      icon: this.icons.shopping,
-    },
-    transport: {
-      text: 'Transport',
-      color: this.colors.orange,
-      icon: this.icons.car,
-    },
-    health: {
-      text: 'Health',
-      color: this.colors.red,
-      icon: this.icons.health,
-    },
-    gift: {
-      text: 'Gifts',
-      color: this.colors.purple,
-      icon: this.icons.gift,
-    },
-    education: {
-      text: 'Education',
-      color: this.colors['blue-light'],
-      icon: this.icons.education,
-    },
-  };
-
-  transactionsInit: any = [
-    {
-      date: '07/03/2022',
-      total: 1540,
-      moves: [
-        {
-          category: this.category.rent.text,
-          description: 'Description',
-          icon: this.category.rent.icon,
-          color: this.category.rent.color,
-          mount: -500,
-          alias: 'Rent',
-        },
-        {
-          category: this.category.salary.text,
-          description: 'Description',
-          icon: this.category.salary.icon,
-          color: this.category.salary.color,
-          mount: 2000,
-          alias: 'salary',
-        },
-        {
-          category: this.category.transport.text,
-          description: 'Description',
-          icon: this.category.transport.icon,
-          color: this.category.transport.color,
-          mount: -10,
-          alias: 'transport',
-        },
-      ],
-    },
-    {
-      date: '06/03/2022',
-      total: -320,
-      moves: [
-        {
-          category: this.category.education.text,
-          description: 'Description',
-          icon: this.category.education.icon,
-          color: this.category.education.color,
-          mount: -250,
-          alias: 'education',
-        },
-        {
-          category: this.category.grocery.text,
-          description: 'Description',
-          icon: this.category.grocery.icon,
-          color: this.category.grocery.color,
-          mount: -20,
-          alias: 'grocery',
-        },
-        {
-          category: this.category.gift.text,
-          description: 'Description',
-          icon: this.category.gift.icon,
-          color: this.category.gift.color,
-          mount: -50,
-          alias: 'gift',
-        },
-      ],
-    },
-    {
-      date: '05/03/2022',
-      total: -500,
-      moves: [
-        {
-          category: this.category.health.text,
-          description: 'Description',
-          icon: this.category.health.icon,
-          color: this.category.health.color,
-          mount: -500,
-          alias: 'health',
-        },
-      ],
-    },
-  ];
-
-  transactions = [...this.transactionsInit];
+    education: 'fa-solid fa-chalkboard'
+  }
   color: string = '';
   icon: string = '';
   name: string = '';
   cantidad: string = '';
+  colorPostivo: string = '#43C6B8';
+  colorNegativo: string = '#F06C6C';
 
-  isFilters: boolean = !true;
-
-  handleClickIconFilter = () => {
-    if (this.isFilters) {
-      this.isFilters = false;
-    } else {
-      this.isFilters = true;
-    }
-  };
-  /////////MIS FILTROSS/////////////////////////
+  isFilters: boolean = false
 
   filterApplieds: any = {
     category: [],
-    amount: {
-      min: 0,
-      max: 4000,
-    },
-    date: { minD: new Date('01/03/2022'), maxD: new Date('30/03/2022') },
-  };
-  handleChangeInput = ($event: any) => {
-    this.transactions = this.transactionsInit;
-    const element = $event.target;
-    if (element.dataset.filter === 'category') {
-      if (element.checked) {
-        this.filterApplieds = {
-          ...this.filterApplieds,
-          category: [...this.filterApplieds.category, element.value],
-        };
-      } else {
-        this.filterApplieds = {
-          ...this.filterApplieds,
-          category: this.filterApplieds.category.filter(
-            (item: string) => item !== element.value
-          ),
-        };
-      }
-      //paso 1
-      let reg = new RegExp(this.filterApplieds.category.join('|'), 'gmi'); // rent | education
-      let newdata = this.transactions.filter((el) => {
-        const str = el.moves.reduce((acc: any, act: any) => {
-          return acc + act.alias;
-        }, '');
-        const test = reg.test(str);
-        reg.lastIndex = 0;
-        return test;
-      });
-      //paso 2
-      newdata = newdata.map((tras) => {
-        const newMoves = tras.moves.filter((mov: any) => {
-          const test2 = reg.test(mov.alias);
-          reg.lastIndex = 0;
-          return test2;
-        });
-        return { ...tras, moves: newMoves };
-      });
-      this.transactions = newdata;
+    amount: {},
+    date: {}
+  }
+  formattedTransactions: any = []
+  listTransactionInit: any = []
+
+  constructor() {
+
+  }
+
+  ngOnChanges (changes: any) {
+    this.formattedTransactions = [...this.formatTransaction(changes['listTransaction'].currentValue)]
+    this.listTransactionInit = [...changes['listTransaction'].currentValue]
+    console.log(this.listTransaction)
+  }
+
+  formatTransaction = (listTransaction: any) => {
+    let result: any[] = []
+    let dates: any[] = []
+    if (listTransaction && listTransaction.length > 0) {
+      listTransaction.forEach((transaction: any) => {
+        const indexInResult = result.findIndex((item: any) => item.date === transaction.date)
+        const isExist = indexInResult >= 0
+
+        if (isExist) {
+          result[indexInResult].moves.push({
+            ...transaction
+          })
+          result[indexInResult].total += transaction.mount
+        } else {
+          let itemResult = {
+            date: transaction.date,
+            total: transaction.mount,
+            moves: [{
+              ...transaction
+            }]
+          }
+          result.push(itemResult)
+        }
+      })
     }
-  };
-  handleMonto = (event: any) => {
-    // const element = event.target;
-    // console.log(element.value);
-    this.transactions = this.transactionsInit;
-    //paso 1
-    const transNumbers = this.transactions.filter((tra) => {
-      const newTra = tra.moves.some(
-        (t: any) =>
-          t.mount >= this.filterApplieds.amount.min &&
-          t.mount <= this.filterApplieds.amount.max
-      );
-      return newTra;
-    });
-    //paso 2
-    const transNumbers2 = transNumbers.map((tras) => {
-      const newTras = tras.moves.filter((mov: any) => {
-        const nn =
-          mov.mount >= this.filterApplieds.amount.min &&
-          mov.mount <= this.filterApplieds.amount.max;
-        return nn;
-      });
-      return { ...tras, moves: newTras };
-    });
-    this.transactions = transNumbers2;
-  };
+
+    return result.sort((a, b) => b.date.localeCompare(a.date))
+  }
+
+  handleClickIconFilter = () => {
+    if (this.isFilters) {
+      this.isFilters = false
+    } else {
+      this.isFilters = true
+    }
+  }
+
+  setCategoryFilter = (element: any) => {
+    if (element.checked) {
+      this.filterApplieds = {
+        ...this.filterApplieds,
+        category: [...this.filterApplieds.category, element.value]
+      }
+    } else {
+      this.filterApplieds = {
+        ...this.filterApplieds,
+        category: this.filterApplieds.category.filter((item: string) => item !== element.value )
+      }
+    }
+  }
+
+  setAmountFilter = (element: any) => {
+    if (element.name === 'min') {
+      if (element.value) {
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          amount: {
+            ...this.filterApplieds.amount,
+            min: Number(element.value)
+          }
+        }
+      } else {
+        const filterAmount = {...this.filterApplieds.amount}
+        delete filterAmount.min
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          amount: filterAmount
+        }
+      }
+    }
+    if (element.name === 'max') {
+      if (element.value) {
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          amount: {
+            ...this.filterApplieds.amount,
+            max: Number(element.value)
+          }
+        }
+      } else {
+        const filterAmount = {...this.filterApplieds.amount}
+        delete filterAmount.max
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          amount: filterAmount
+        }
+      }
+    }
+  }
+
+  formatDate = (date: string) => {
+    const [year, month, day] = date.split('-')
+
+    return [day, month, year].join('/')
+
+  }
+
+  setDateFilter = (element: any) => {
+    if (element.name === 'from') {
+      if (element.value) {
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          date: {
+            ...this.filterApplieds.date,
+            from: this.formatDate(element.value)
+          }
+        }
+      } else {
+        const filterDate = {...this.filterApplieds.date}
+        delete filterDate.from
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          date: filterDate
+        }
+      }
+    }
+    if (element.name === 'to') {
+      if (element.value) {
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          date: {
+            ...this.filterApplieds.date,
+            to: this.formatDate(element.value)
+          }
+        }
+      } else {
+        const filterDate = {...this.filterApplieds.date}
+        delete filterDate.to
+        this.filterApplieds = {
+          ...this.filterApplieds,
+          date: filterDate
+        }
+      }
+    }
+  }
+
+  formatDateFilter = (date: string) => {
+    return date.split("/").reverse().join("-")
+  }
+
+  handleChangeInput = ($event: any) => {
+    const element = $event.target
+    console.log(element)
+    let filtered: any = []
+
+    if (element.dataset.filter === 'category') {
+      this.setCategoryFilter(element)
+    }
+    if (element.dataset.filter === 'amount') {
+      this.setAmountFilter(element)
+    }
+
+    if (element.dataset.filter === 'date') {
+      this.setDateFilter(element)
+    }
+    filtered = this.listTransactionInit.filter((item: any) => {
+      let currentTransaction = item
+
+      if (this.filterApplieds.category.length > 0) {
+        currentTransaction = currentTransaction && this.filterApplieds.category.includes(item.alias)
+      }
+
+      if (this.filterApplieds.amount.hasOwnProperty('min') && !this.filterApplieds.amount.hasOwnProperty('max')) {
+        currentTransaction = currentTransaction && item.mount >= this.filterApplieds.amount.min
+      }
+      if (this.filterApplieds.amount.hasOwnProperty('max') && !this.filterApplieds.amount.hasOwnProperty('min')) {
+        currentTransaction = currentTransaction && item.mount <= this.filterApplieds.amount.max
+      }
+      if (this.filterApplieds.amount.hasOwnProperty('min') && this.filterApplieds.amount.hasOwnProperty('max')) {
+        currentTransaction = currentTransaction && item.mount >= this.filterApplieds.amount.min && item.mount <= this.filterApplieds.amount.max
+      }
+      if (this.filterApplieds.date.from && !this.filterApplieds.date.to) {
+        currentTransaction = currentTransaction && item.date >= this.formatDateFilter(this.filterApplieds.date.from)
+      }
+      if (this.filterApplieds.date.to && !this.filterApplieds.date.from) {
+        currentTransaction = currentTransaction && item.date <= this.formatDateFilter(this.filterApplieds.date.to)
+      }
+      if (this.filterApplieds.date.from && this.filterApplieds.date.to) {
+        currentTransaction = currentTransaction && item.date >= this.formatDateFilter(this.filterApplieds.date.from) && item.date <= this.formatDateFilter(this.filterApplieds.date.to)
+      }
+
+      return currentTransaction
+    })
+
+    this.formattedTransactions = [...this.formatTransaction(filtered)]
+  }
+
 }

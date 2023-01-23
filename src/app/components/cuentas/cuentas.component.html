@@ -6,7 +6,7 @@
       <p>{{ fecha2 | date : "MMMM , yyyy" }}</p>
     </div>
   </div>
-  <div class="money">
-    <p>$ {{ cantidad }}</p>
+  <div class="money"[ngClass]="cantidad > 0 ? 'total--plus':'total--minus'">
+    <p>{{ cantidad }}</p>
   </div>
 </div>

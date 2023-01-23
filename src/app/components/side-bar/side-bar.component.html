@@ -1,14 +1,13 @@
 <div class="nav">
   <div class="nav-item">
-    <h2>{{ "{ expensable }" }}</h2>
+    <h2>{{"{ expensable }"}}</h2>
     <ul>
       <li
-      [routerLink]="nav.name"
-        *ngFor="let nav of menu"
-        [ngClass]="active === nav.name ? 'item--active' : ''"
+        *ngFor="let nav of menu" [ngClass]="active === nav.routePath ? 'item--active': ''"
+        routerLink="{{nav.routePath}}"
       >
-        <i class="{{ nav.icon }}"></i>
-        <a >{{ nav.text }}</a>
+        <i class="{{nav.icon}}"></i>
+        <a >{{nav.text}}</a>
       </li>
     </ul>
   </div>

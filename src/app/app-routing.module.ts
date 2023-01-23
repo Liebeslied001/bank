@@ -1,37 +1,54 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BudgetComponent } from './components/budget/budget.component';
-import { CreateNewCategoryComponent } from './components/create-new-category/create-new-category.component';
-import { SideBarComponent } from './components/side-bar/side-bar.component';
-import { TransactionsComponent } from './components/transactions/transactions.component';
-import { GuardGuard } from './guards/guard.guard';
 import { IsLoggedGuard } from './guards/is-logged.guard';
-import { BudgetPageComponent } from './pages/budget-page/budget-page.component';
+import { RedirectLoginGuard } from './guards/redirect-login.guard';
+import { BudgetsComponent } from './pages/budgets/budgets.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 import { LoginComponent } from './pages/login/login.component';
-import { MainComponent } from './pages/main/main.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { SingUpComponent } from './pages/sing-up/sing-up.component';
-import { TransactionPageComponent } from './pages/transaction-page/transaction-page.component';
+import { PagesModule } from './pages/pages.module';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { TransactionComponent } from './pages/transaction/transaction.component';
 
 const routes: Routes = [
-  { path: 'singup', component: SingUpComponent, canActivate: [IsLoggedGuard] },
-  { path: 'login', component: LoginComponent, canActivate: [IsLoggedGuard] },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '/login'
+  },
   {
     path: 'categories',
-    component: MainComponent,
-    canActivate: [GuardGuard],
+    component: CategoriesComponent,
+    canActivate: [RedirectLoginGuard]
   },
   {
-    path: 'transactions',
-    component: TransactionPageComponent,
-    canActivate: [GuardGuard],
+    path: 'transaction',
+    component: TransactionComponent,
+    canActivate: [RedirectLoginGuard]
   },
-  { path: 'budgets', component: BudgetPageComponent, canActivate: [GuardGuard] },
-  { path: '**', component:  NotFoundComponent},
+  {
+    path: 'budgets',
+    component: BudgetsComponent,
+    canActivate: [RedirectLoginGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [IsLoggedGuard]
+  },
+  {
+    path: 'signup',
+    component: SignUpComponent,
+    canActivate: [IsLoggedGuard]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -1,119 +1,44 @@
 <div class="transaction">
   <div class="titulo">
     <h2>Transaction</h2>
-    <div class="icon-filter" (click)="handleClickIconFilter()">
-      <i class="fa-solid fa-filter"></i>
-    </div>
+    <div class="icon-filter" (click)="handleClickIconFilter()"><i class="fa-solid fa-filter"></i></div>
   </div>
 
-  <div class="filters" *ngIf="isFilters">
+  <div class="filters"*ngIf="isFilters">
     <h2>Category</h2>
 
     <div class="category-section">
-      <label for="rent">
-        <input
-          (click)="handleChangeInput($event)"
-          type="checkbox"
-          id="rent"
-          value="rent"
-          data-filter="category"
-        />
-        Rent
-      </label>
-      <label for="salary">
-        <input
-          (click)="handleChangeInput($event)"
-          type="checkbox"
-          id="salary"
-          value="salary"
-          data-filter="category"
-        />
-        Salary
-      </label>
-      <label for="transport">
-        <input
-          (click)="handleChangeInput($event)"
-          type="checkbox"
-          id="transport"
-          value="transport"
-          data-filter="category"
-        />
-        Transport
-      </label>
-      <label for="education">
-        <input
-          (click)="handleChangeInput($event)"
-          type="checkbox"
-          id="education"
-          value="education"
-          data-filter="category"
-        />
-        Education
-      </label>
-      <label for="grocery">
-        <input
-          (click)="handleChangeInput($event)"
-          type="checkbox"
-          id="grocery"
-          value="grocery"
-          data-filter="category"
-        />
-        Groceries
-      </label>
-      <label for="gift">
-        <input
-          (click)="handleChangeInput($event)"
-          type="checkbox"
-          id="gift"
-          value="gift"
-          data-filter="category"
-        />
-        Gift
+      <label for="{{category.alias}}" *ngFor="let category of listCategory">
+        <input (input)="handleChangeInput($event)" type="checkbox" id="{{category.alias}}" value="{{category.alias}}" data-filter="category">
+        {{category.name}}
       </label>
     </div>
-
     <h2>Amount</h2>
     <div class="amount-section">
       <div>
         <label>MIN</label>
-        <input
-          type="number"
-          value="0"
-          (input)="handleMonto($event)"
-          min="0"
-          name="min"
-          [(ngModel)]="filterApplieds.amount.min"
-          data-filter="amount"
-        />
+        <input name='min' type="text" (input)="handleChangeInput($event)" data-filter="amount">
       </div>
       <div>
         <label>MAX</label>
-        <input
-          type="number"
-          value="4000"
-          name="max"
-          (input)="handleMonto($event)"
-          [(ngModel)]="filterApplieds.amount.max"
-          data-filter="amount"
-        />
+        <input name="max" type="text" (input)="handleChangeInput($event)" data-filter="amount">
       </div>
     </div>
-
     <h2>Date</h2>
     <div class="amount-section">
       <div>
         <label>FROM</label>
-        <input type="date" />
+        <input name='from' type="date" (input)="handleChangeInput($event)" data-filter="date">
       </div>
       <div>
         <label>TO</label>
-        <input type="date" />
+        <input name="to" type="date" (input)="handleChangeInput($event)" data-filter="date">
       </div>
     </div>
   </div>
 
   <div class="gastos">
-    <div *ngFor="let transaction of transactions">
+    <div *ngFor="let transaction of formattedTransactions">
       <app-cuentas
         [indice]="transaction.date"
         [fecha1]="transaction.date"
@@ -126,7 +51,9 @@
         [name]="move.category"
         [icon]="move.icon"
         [color]="move.color"
+        [description]="move.description"
       ></app-ingresos>
     </div>
+
   </div>
 </div>

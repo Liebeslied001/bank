@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'pipesUtils'
+  name: 'formatTransaction'
 })
-export class PipesUtilsPipe implements PipeTransform {
+export class FormatTransactionPipe implements PipeTransform {
 
   transform(value: unknown, ...args: unknown[]): unknown {
     return null;

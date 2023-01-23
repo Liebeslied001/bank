@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { UserService } from 'src/app/service/user.service';
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 import { FormControl, Validators } from '@angular/forms';
 
@@ -23,8 +24,19 @@ export class LoginComponent {
     email: '',
     password: '',
   };
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
+
   enviarForm() {
-    this.userService.login(this.usuario.email, this.usuario.password);
+    if (this.usuario.email && this.usuario.password) {
+
+      this.userService.login(this.usuario.email, this.usuario.password);
+    }
+  }
+
+  redirecToSignup = () => {
+    this.router.navigate(['/signup'])
   }
 }

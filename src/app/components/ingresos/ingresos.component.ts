@@ -11,4 +11,5 @@ export class IngresosComponent {
   @Input() name!: string;
   @Input() cantidad!: string | number;
   @Input() colorCant!: string;
+  @Input() description!: string;
 }

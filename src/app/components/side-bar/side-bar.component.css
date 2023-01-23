@@ -24,7 +24,6 @@ a {
   justify-content: space-between;
   padding: 20px 0px;
   border-right: 1px solid var(--color-gray-dark-separator);
-  overflow: hidden;
 }
 
 .nav-item {
@@ -82,8 +81,4 @@ i {
   cursor: pointer;
   font-weight: 600;
   font-size: 18px;
-}
-
-.btn-logout {
-  cursor: pointer;
 }

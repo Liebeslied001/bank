@@ -1,5 +1,5 @@
 <div class="container-st">
-  <h1>Categories page 3</h1>
+  <h1>Categories</h1>
   <nav class="nav">
     <div (click)="handleClickTab($event, tabItem.alias)" *ngFor="let tabItem of tabs" class="nav-item" [ngClass]="tabActive === tabItem.alias ? 'nav-item--active' : ''">
       <div class="nav-icon">{{tabItem.icon}}</div>
@@ -14,7 +14,7 @@
           <i class="fa-solid fa-chevron-left"></i>
         </div>
         <div class="text-header">
-          <p>March 2022</p>
+          <p>{{currentDate | date : "MMMM , yyyy" }}</p>
         </div>
         <div class="icon-header">
           <i class="fa-solid fa-chevron-right"></i>
@@ -27,18 +27,18 @@
     </div>
     <div class="button-cont">
       <app-button
-        *ngFor="let itemCategory of listCategory"
-        [icon]="itemCategory.icon"
-        [textSalario]="itemCategory.name"
-        [money]="itemCategory.total"
-        [color]="itemCategory.color"
+        *ngFor="let category of listCategory"
+        [icon]="category.icon"
+        [textSalario]="category.name"
+        [money]="category.total"
+        [color]="category.color"
       ></app-button>
       <div class="add-button" (click)="handleClickAddCategory()">
         <i class="fa-solid fa-plus"></i>
       </div>
       <app-add-new-categories
         [display]="isOpenModal"
-        (clickSend)="getNewCategory($event)"
+        (clickSend)="createCategory($event)"
         (clickClose)="handleClickOutput($event)"></app-add-new-categories>
     </div>
   </div>

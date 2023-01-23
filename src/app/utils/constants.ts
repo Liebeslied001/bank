@@ -1,0 +1,30 @@
+export const COLORS: any = {
+  red: '#f44261',
+  orange: '#f97216',
+  yellow: '#f59e0b',
+  green: '#10b981',
+  'green-aqua': '#10b981',
+  turqoise: 'cyan',
+  'blue-light': '#0ea5e9',
+  blue: '#3b82f6',
+  gray: '#6b7380',
+  purple: '#8b5cf6',
+  teal: 'teal',
+  cyan: 'cyan',
+  'light-blue': '#0ea5e9',
+};
+
+export const  ICONS: any = {
+  building: 'fa-solid fa-building-columns',
+  shopping: 'fa-solid fa-cart-shopping',
+  car: 'fa-solid fa-car',
+  health: 'fa-solid fa-laptop-medical',
+  gift: 'fa-solid fa-gift',
+  education: 'fa-solid fa-chalkboard',
+  gamepad: 'fa-solid fa-gamepad',
+  creddit: 'fa-solid fa-credit-card',
+  cart: 'fa-solid fa-cart-shopping',
+  game: 'fa-solid fa-gamepad',
+  bill: 'fa-solid fa-credit-card',
+  bank: 'fa-solid fa-building-columns',
+}
