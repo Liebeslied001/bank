@@ -9,7 +9,6 @@
 }
 
 .contenedor {
-  border: 2px solid #e11;
   display: grid;
   place-content: center;
   height: 100%;

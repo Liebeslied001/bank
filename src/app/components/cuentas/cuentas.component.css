@@ -30,8 +30,14 @@
   font-weight: 600;
 }
 
-.money p {
+.money .text_red {
   color: #ef4e4e;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.money .text_green {
+  color: #10b981;
   font-size: 1.8rem;
   font-weight: bold;
 }

@@ -1,11 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BudgetComponent } from './components/budget/budget.component';
-import { CreateNewCategoryComponent } from './components/create-new-category/create-new-category.component';
-import { SideBarComponent } from './components/side-bar/side-bar.component';
-import { TransactionsComponent } from './components/transactions/transactions.component';
 import { GuardGuard } from './guards/guard.guard';
-import { IsLoggedGuard } from './guards/is-logged.guard';
 import { BudgetPageComponent } from './pages/budget-page/budget-page.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MainComponent } from './pages/main/main.component';

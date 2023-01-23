@@ -10,13 +10,8 @@ import { ProductsService } from 'src/app/service/product.service';
   styleUrls: ['./transactions.component.css'],
 })
 export class TransactionsComponent {
-  @Input() transaction: Transaction = {
-    id: 0,
-    icon: '',
-    category: '',
-    amount: 0,
-  };
   transactions: any[] = [];
+  transactions2: any[] = [];
   transactionsRender: any[] = [];
   constructor(private categoryService: CategoriesService) {}
   ngOnInit() {
@@ -42,7 +37,6 @@ export class TransactionsComponent {
           });
           data.push(...transac);
         });
-        console.log('data', data);
         //filtro 2 sorted el arreglo
         this.transactions = data.sort((o1, o2) => {
           if (new Date(o1.date) > new Date(o2.date)) {
@@ -53,177 +47,42 @@ export class TransactionsComponent {
             return 0;
           }
         });
-        //filtro 3 añadir propiedad transacts
-        const data3: any[] = [];
-        this.transactions.forEach((dd) => {
-          const index = data3.findIndex((dd2) => dd2.date === dd.date);
-          if (index > -1) {
-            data3[index].transacs.push(dd);
-            return;
-          }
-          return data3.push({ date: dd.date, transacs: [dd] });
-        });
-        this.transactionsRender = data3;
-        //filtro 4 añadir propiedad total
-        const data4: any[] = data3.map((transc) => {
-          const total = transc.transacs.reduce((acc: any, act: any) => {
-            return acc + act.amount;
-          }, 0);
-          return {
-            ...transc,
-            total,
-          };
-        });
-        this.transactionsRender = data4;
+        this.actualizarDom();
       },
       error: (err) => {},
     });
   }
-  // private colors: any = {
-  //   red: '#f44261',
-  //   orange: '#f97216',
-  //   yellow: '#f59e0b',
-  //   green: '#10b981',
-  //   'green-aqua': '#10b981',
-  //   turqoise: '#06b6d4',
-  //   'blue-light': '#0ea5e9',
-  //   blue: '#3b82f6',
-  //   gray: '#6b7380',
-  //   purple: '#8b5cf6',
-  // };
-
-  // private icons: any = {
-  //   building: 'fa-solid fa-building-columns',
-  //   shopping: 'fa-solid fa-cart-shopping',
-  //   car: 'fa-solid fa-car',
-  //   health: 'fa-solid fa-laptop-medical',
-  //   gift: 'fa-solid fa-gift',
-  //   education: 'fa-solid fa-chalkboard',
-  // };
-
-  // private category = {
-  //   rent: {
-  //     text: 'Rent',
-  //     color: this.colors.gray,
-  //     icon: this.icons.building,
-  //   },
-  //   salary: {
-  //     text: 'Salary',
-  //     color: this.colors.green,
-  //     icon: this.icons.building,
-  //   },
-  //   grocery: {
-  //     text: 'Groceries',
-  //     color: this.colors.turqoise,
-  //     icon: this.icons.shopping,
-  //   },
-  //   transport: {
-  //     text: 'Transport',
-  //     color: this.colors.orange,
-  //     icon: this.icons.car,
-  //   },
-  //   health: {
-  //     text: 'Health',
-  //     color: this.colors.red,
-  //     icon: this.icons.health,
-  //   },
-  //   gift: {
-  //     text: 'Gifts',
-  //     color: this.colors.purple,
-  //     icon: this.icons.gift,
-  //   },
-  //   education: {
-  //     text: 'Education',
-  //     color: this.colors['blue-light'],
-  //     icon: this.icons.education,
-  //   },
-  // };
-
-  // transactionsInit: any = [
-  //   {
-  //     date: '07/03/2022',
-  //     total: 1540,
-  //     moves: [
-  //       {
-  //         category: this.category.rent.text,
-  //         description: 'Description',
-  //         icon: this.category.rent.icon,
-  //         color: this.category.rent.color,
-  //         mount: -500,
-  //         alias: 'Rent',
-  //       },
-  //       {
-  //         category: this.category.salary.text,
-  //         description: 'Description',
-  //         icon: this.category.salary.icon,
-  //         color: this.category.salary.color,
-  //         mount: 2000,
-  //         alias: 'salary',
-  //       },
-  //       {
-  //         category: this.category.transport.text,
-  //         description: 'Description',
-  //         icon: this.category.transport.icon,
-  //         color: this.category.transport.color,
-  //         mount: -10,
-  //         alias: 'transport',
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     date: '06/03/2022',
-  //     total: -320,
-  //     moves: [
-  //       {
-  //         category: this.category.education.text,
-  //         description: 'Description',
-  //         icon: this.category.education.icon,
-  //         color: this.category.education.color,
-  //         mount: -250,
-  //         alias: 'education',
-  //       },
-  //       {
-  //         category: this.category.grocery.text,
-  //         description: 'Description',
-  //         icon: this.category.grocery.icon,
-  //         color: this.category.grocery.color,
-  //         mount: -20,
-  //         alias: 'grocery',
-  //       },
-  //       {
-  //         category: this.category.gift.text,
-  //         description: 'Description',
-  //         icon: this.category.gift.icon,
-  //         color: this.category.gift.color,
-  //         mount: -50,
-  //         alias: 'gift',
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     date: '05/03/2022',
-  //     total: -500,
-  //     moves: [
-  //       {
-  //         category: this.category.health.text,
-  //         description: 'Description',
-  //         icon: this.category.health.icon,
-  //         color: this.category.health.color,
-  //         mount: -500,
-  //         alias: 'health',
-  //       },
-  //     ],
-  //   },
-  // ];
-
-  // transactions = [...this.transactionsInit];
-  // color: string = '';
-  // icon: string = '';
-  // name: string = '';
-  // cantidad: string = '';
-
+  actualizarDom() {
+    //filtro 3 añadir propiedad transacts
+    let transaciones = [];
+    if (this.transactions2.length < 1) {
+      transaciones = [...this.transactions];
+    } else {
+      transaciones = [...this.transactions2];
+    }
+    const data3: any[] = [];
+    transaciones.forEach((dd) => {
+      const index = data3.findIndex((dd2) => dd2.date === dd.date);
+      if (index > -1) {
+        data3[index].transacs.push(dd);
+        return;
+      }
+      return data3.push({ date: dd.date, transacs: [dd] });
+    });
+    this.transactionsRender = data3;
+    //filtro 4 añadir propiedad total
+    const data4: any[] = data3.map((transc) => {
+      const total = transc.transacs.reduce((acc: any, act: any) => {
+        return acc + act.amount;
+      }, 0);
+      return {
+        ...transc,
+        total,
+      };
+    });
+    this.transactionsRender = data4;
+  }
   isFilters: boolean = !true;
-
   handleClickIconFilter = () => {
     if (this.isFilters) {
       this.isFilters = false;
@@ -236,73 +95,53 @@ export class TransactionsComponent {
   filterApplieds: any = {
     category: [],
     amount: {
-      min: 0,
+      min: -4000,
       max: 4000,
     },
-    date: { minD: new Date('01/03/2022'), maxD: new Date('30/03/2022') },
+    date: { minD: '2021-01-01', maxD: '2021-12-30' },
   };
-  handleChangeInput = ($event: any) => {
-    // this.transactions = this.transactionsInit;
-    // const element = $event.target;
-    // if (element.dataset.filter === 'category') {
-    //   if (element.checked) {
-    //     this.filterApplieds = {
-    //       ...this.filterApplieds,
-    //       category: [...this.filterApplieds.category, element.value],
-    //     };
-    //   } else {
-    //     this.filterApplieds = {
-    //       ...this.filterApplieds,
-    //       category: this.filterApplieds.category.filter(
-    //         (item: string) => item !== element.value
-    //       ),
-    //     };
-    //   }
-    //   //paso 1
-    //   let reg = new RegExp(this.filterApplieds.category.join('|'), 'gmi'); // rent | education
-    //   let newdata = this.transactions.filter((el) => {
-    //     const str = el.moves.reduce((acc: any, act: any) => {
-    //       return acc + act.alias;
-    //     }, '');
-    //     const test = reg.test(str);
-    //     reg.lastIndex = 0;
-    //     return test;
-    //   });
-    //   //paso 2
-    //   newdata = newdata.map((tras) => {
-    //     const newMoves = tras.moves.filter((mov: any) => {
-    //       const test2 = reg.test(mov.alias);
-    //       reg.lastIndex = 0;
-    //       return test2;
-    //     });
-    //     return { ...tras, moves: newMoves };
-    //   });
-    //   this.transactions = newdata;
-    // }
-  };
-  handleMonto = (event: any) => {
-    // const element = event.target;
-    // console.log(element.value);
-    // this.transactions = this.transactionsInit;
-    // //paso 1
-    // const transNumbers = this.transactions.filter((tra) => {
-    //   const newTra = tra.moves.some(
-    //     (t: any) =>
-    //       t.mount >= this.filterApplieds.amount.min &&
-    //       t.mount <= this.filterApplieds.amount.max
-    //   );
-    //   return newTra;
-    // });
-    // //paso 2
-    // const transNumbers2 = transNumbers.map((tras) => {
-    //   const newTras = tras.moves.filter((mov: any) => {
-    //     const nn =
-    //       mov.mount >= this.filterApplieds.amount.min &&
-    //       mov.mount <= this.filterApplieds.amount.max;
-    //     return nn;
-    //   });
-    //   return { ...tras, moves: newTras };
-    // });
-    // this.transactions = transNumbers2;
-  };
+  handleChangeInput($event: any) {
+    const categoria: string = $event.target.value;
+    const isSelected: boolean = $event.target.checked;
+    this.filtrarPorCategoria(categoria, isSelected);
+    this.actualizarDom();
+  }
+  handleMonto(event: any) {
+    this.filtrarPorMonto();
+    this.actualizarDom();
+  }
+  handleFecha() {
+    this.filtrarPorFecha();
+    this.actualizarDom();
+  }
+  filtrarPorCategoria(categoria: string, isSelected: boolean) {
+    if (isSelected) {
+      //agregamos filtro
+      this.filterApplieds.category.push(categoria);
+    } else {
+      //quitamos filtro
+      this.filterApplieds.category = this.filterApplieds.category.filter(
+        (cat: any) => cat !== categoria
+      );
+    }
+    this.transactions2 = this.transactions.filter((cat) => {
+      let reg = new RegExp(this.filterApplieds.category.join('|'), 'gmi');
+      reg.lastIndex = 0;
+      return reg.test(cat.name);
+    });
+  }
+  filtrarPorMonto() {
+    this.transactions2 = this.transactions.filter((cat) => {
+      const min = this.filterApplieds.amount.min;
+      const max = this.filterApplieds.amount.max;
+      return cat.amount > min && cat.amount < max;
+    });
+  }
+  filtrarPorFecha() {
+    this.transactions2 = this.transactions2.filter((cat) => {
+      const minD = new Date(this.filterApplieds.date.minD);
+      const maxD = new Date(this.filterApplieds.date.maxD);
+      return new Date(cat.date) > minD && new Date(cat.date) < maxD;
+    });
+  }
 }

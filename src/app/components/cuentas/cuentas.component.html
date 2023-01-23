@@ -7,6 +7,6 @@
     </div>
   </div>
   <div class="money">
-    <p>$ {{ cantidad }}</p>
+    <p [ngClass]="cantidad < 0 ? 'text_red' : 'text_green'">$ {{ cantidad }}</p>
   </div>
 </div>
