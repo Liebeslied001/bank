@@ -1,10 +1,11 @@
 .container-st {
   width: 100%;
   height: 100vh;
-  overflow: scroll;
   padding: 60px;
   font-family: inter;
   color: var(--color-gray-dark);
+  overflow: scroll;
+  scrollbar-width: none;
 }
 
 h1 {
@@ -109,30 +110,32 @@ h5 {
 }
 
 .text-header p {
-  margin: 0;
   color: #666;
   font-weight: 600;
   font-size: 1.3rem;
   cursor: pointer;
 }
 
-.prise {
+.header .prise {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 30px 0;
-  gap: 10px;
+}
+
+.prise {
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.prise p {
+  color: #6668;
+  font-weight: 600;
 }
 
 .prise .precio {
-  font-weight: 600;
   font-size: 2.8rem;
   color: var(--color-red);
-}
-
-.prise .expenses {
-  color: #666;
-  font-weight: 600;
+  margin: 5px 0;
 }
 
 /* botones */

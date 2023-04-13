@@ -18,28 +18,74 @@
         <p class="text-uppercase mb-2 placeholder">Color</p>
         <div class="paleta" (click)="handleClickColor($event)">
           <button
-            *ngFor="let category of categories"
-            [attr.data-color]="category.color"
-            class="btn-cateogory"
-            [ngStyle]="{
-              'background-color':
-                category.color === 'light-blue' ? 'lightblue' : category.color
-            }"
+            *ngFor="let color of colors"
+            [attr.data-color]="color.name"
+            class="{{ color.className }}"
+            [ngClass]="color.name === newCategory.color ? 'color-selected' : ''"
           ></button>
         </div>
         <p class="text-uppercase mt-4 mb-2 placeholder">Icon</p>
-        <div class="icons">
+        <div class="icons" (click)="handleClickIcon($event)">
           <button
-            *ngFor="let category of categories"
             class="circle-icon"
             [ngClass]="newCategory.icon === 'building' ? 'icon-selected' : ''"
+            data-icon="building"
           >
-            <img
-              [src]="'../../../assets/svg/' + category.icon + '.svg'"
-              alt=""
-              [attr.data-icon]="category.icon"
-              (click)="handleClickIcon($event)"
-            />
+            <i class="fa-solid fa-building-columns"></i>
+
+          </button>
+          <button
+            class="circle-icon"
+            [ngClass]="newCategory.icon === 'shopping' ? 'icon-selected' : ''"
+            data-icon="shopping"
+          >
+            <i class="fa-solid fa-cart-shopping"></i>
+          </button>
+          <button
+            class="circle-icon"
+            [ngClass]="newCategory.icon === 'health' ? 'icon-selected' : ''"
+            data-icon="health"
+          >
+            <i class="fa-solid fa-laptop-medical"></i>
+
+          </button>
+          <button
+            class="circle-icon"
+            [ngClass]="newCategory.icon === 'gamepad' ? 'icon-selected' : ''"
+            data-icon="gamepad"
+          >
+          <i class="fa-solid fa-gamepad"></i>
+
+          </button>
+          <button
+            class="circle-icon"
+            [ngClass]="newCategory.icon === 'creddit' ? 'icon-selected' : ''"
+            data-icon="creddit"
+          >
+          <i class="fa-solid fa-credit-card"></i>
+
+          </button>
+          <button
+            class="circle-icon"
+            [ngClass]="newCategory.icon === 'education' ? 'icon-selected' : ''"
+            data-icon="education"
+          >
+          <i class="fa-solid fa-chalkboard"></i>
+
+          </button>
+          <button
+            class="circle-icon"
+            [ngClass]="newCategory.icon === 'car' ? 'icon-selected' : ''"
+            data-icon="car"
+          >
+            <i class="fa-solid fa-car"></i>
+          </button>
+          <button
+            class="circle-icon"
+            [ngClass]="newCategory.icon === 'gift' ? 'icon-selected' : ''"
+            data-icon="gift"
+          >
+            <i class="fa-solid fa-gift"></i>
           </button>
         </div>
       </div>

@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ButtonComponent {
   @Input() color!: string;
+  @Input() money!: number;
   @Input() textSalario!: string;
   @Input() icon!: string;
-  @Input() money!: number;
 }

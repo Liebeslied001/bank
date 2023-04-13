@@ -10,85 +10,65 @@
     <h2>Category</h2>
 
     <div class="category-section">
-      <label for="Independent">
+      <label for="rent">
         <input
           (click)="handleChangeInput($event)"
           type="checkbox"
-          id="Independent"
-          value="Independent"
+          id="rent"
+          value="rent"
           data-filter="category"
         />
-        Independent
+        Rent
       </label>
-      <label for="Salary">
+      <label for="salary">
         <input
           (click)="handleChangeInput($event)"
           type="checkbox"
-          id="Salary"
-          value="Salary"
+          id="salary"
+          value="salary"
           data-filter="category"
         />
         Salary
       </label>
-      <label for="Transportation">
+      <label for="transport">
         <input
           (click)="handleChangeInput($event)"
           type="checkbox"
-          id="Transportation"
-          value="Transportation"
+          id="transport"
+          value="transport"
           data-filter="category"
         />
-        Transportation
+        Transport
       </label>
-      <label for="Education">
+      <label for="education">
         <input
           (click)="handleChangeInput($event)"
           type="checkbox"
-          id="Education"
-          value="Education"
+          id="education"
+          value="education"
           data-filter="category"
         />
         Education
       </label>
-      <label for="Food">
+      <label for="grocery">
         <input
           (click)="handleChangeInput($event)"
           type="checkbox"
-          id="Food"
-          value="Food"
+          id="grocery"
+          value="grocery"
           data-filter="category"
         />
-        Food
+        Groceries
       </label>
-      <label for="Utilities">
+      <label for="gift">
         <input
           (click)="handleChangeInput($event)"
           type="checkbox"
-          id="Utilities"
-          value="Utilities"
+          id="gift"
+          value="gift"
           data-filter="category"
         />
-        Utilities
-      </label>
-      <label for="Entertainment">
-        <input
-          (click)="handleChangeInput($event)"
-          type="checkbox"
-          id="Entertainment"
-          value="Entertainment"
-          data-filter="category"
-        />
-        Entertainment
-      </label>
-      <label for="Other">
-        <input
-          (click)="handleChangeInput($event)"
-          type="checkbox"
-          id="Other"
-          value="Other"
-          data-filter="category"
-        />
-        Other
+        Gift
       </label>
     </div>
 
@@ -123,40 +103,30 @@
     <div class="amount-section">
       <div>
         <label>FROM</label>
-        <input
-          type="date"
-          (input)="handleFecha()"
-          [(ngModel)]="filterApplieds.date.minD"
-        />
+        <input type="date" />
       </div>
       <div>
         <label>TO</label>
-        <input
-          type="date"
-          (input)="handleFecha()"
-          [(ngModel)]="filterApplieds.date.maxD"
-        />
+        <input type="date" />
       </div>
     </div>
   </div>
 
   <div class="gastos">
-    <div *ngFor="let transaction of transactionsRender">
+    <div *ngFor="let transaction of transactions">
       <app-cuentas
         [indice]="transaction.date"
         [fecha1]="transaction.date"
         [fecha2]="transaction.date"
         [cantidad]="transaction.total"
       ></app-cuentas>
-      <div *ngFor="let transac of transaction.transacs">
-        <app-ingresos
-          [cantidad]="transac.amount"
-          [name]="transac.name"
-          [icon]="transac.icon"
-          [color]="transac.color"
-          [notas]="transac.notes"
-        ></app-ingresos>
-      </div>
+      <app-ingresos
+        *ngFor="let move of transaction.moves"
+        [cantidad]="move.mount"
+        [name]="move.category"
+        [icon]="move.icon"
+        [color]="move.color"
+      ></app-ingresos>
     </div>
   </div>
 </div>

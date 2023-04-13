@@ -1,6 +1,6 @@
 <div class="items" [ngStyle]="{ 'border-color': color }">
   <div class="icon" [ngStyle]="{ 'background-color': color }">
-    <img [src]="'../../../assets/svg/' + icon + '.svg'" alt="" />
+    <i [ngClass]="icon"></i>
   </div>
   <div class="gastos">
     <h5>{{ textSalario }}</h5>
